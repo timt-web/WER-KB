@@ -1,0 +1,7 @@
+evidence_domain,resources,potential_dependency,interpretive_action
+Computational predictors,CADD; REVEL; SIFT; PolyPhen-2; AlphaMissense,"Potential overlap in features, training data, annotations, or assumptions.",Do not count agreement as automatically independent confirmation.
+Clinical assertion sources,ClinVar; ClinGen; HGMD; Mastermind; PubMed,Assertions and summaries may trace to the same primary studies or submissions.,Trace claims to primary evidence where possible.
+Transcript/annotation sources,Ensembl; RefSeq; GENCODE; MANE,Different transcript sets may produce different consequences; matched sources may overlap.,"Record genome build, transcript accession, release, and selection rationale."
+Population datasets,gnomAD; TOPMed; 1000 Genomes; Iranome,"Cohorts, ancestry labels, and processing differ; some groups may overlap conceptually or not be interchangeable.","Interpret frequency in the context of ancestry, coverage, and disease model."
+Regulatory resources,GTEx; ENCODE; RegulomeDB; FANTOM5,"Aggregated annotations can reuse shared assays, datasets, or inferred features.","Treat outputs as contextual support, not independent proof."
+Structural resources,UniProt; PDB; AlphaFold DB; InterPro,"Protein annotations and models may be based on related sequences, structures, or databases.",Check direct source and mapping before inferring function.
