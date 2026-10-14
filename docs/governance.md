@@ -20,7 +20,8 @@ For each new release or substantive change:
 3. Reassess genome-build/transcript compatibility, inputs, outputs, and limitations.
 4. Check whether validation evidence, scope, data provenance, or dependencies changed.
 5. Document the change in `CHANGELOG.md`.
-6. Increment the repository release version using semantic versioning.
+6. Run `python3 scripts/build_catalog.py` so the JSON catalog, rationale notes, and workflow page match the tables, then run `python3 scripts/validate_catalog.py`.
+7. Increment the repository release version using semantic versioning.
 
 ## Versioning
 

@@ -1,64 +1,82 @@
-# WER-KB
+# An evidence-based knowledge base for clinical WES/WGS variant interpretation and prioritization
 
-## An evidence-based knowledge base for clinical WES/WGS variant interpretation and prioritization
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Catalog version](https://img.shields.io/badge/catalog-v0.2.0-blue.svg)](CHANGELOG.md)
+[![Validate catalog](https://github.com/timt-web/WER-KB/actions/workflows/validate.yml/badge.svg)](https://github.com/timt-web/WER-KB/actions/workflows/validate.yml)
 
-WER-KB is an updateable, versioned resource catalog that operationalizes the framework described in **“An Evidence-Based Framework for Clinical WES/WGS Variant Interpretation and Prioritization.”** It supports transparent selection and contextual interpretation of databases, tools, guidelines, and knowledge resources used after candidate variants have been generated.
+WER-KB is the resource catalog for this paper. It covers the part of clinical exome and genome analysis that starts after variant calling: which databases, tools, and guidelines a laboratory might consult for a germline single-nucleotide variant or small indel, and what each of those outputs can and cannot decide.
 
-## Scope
-
-WER-KB focuses on post-analytical interpretation of germline single-nucleotide variants and small insertions/deletions identified through clinical whole-exome or whole-genome sequencing. It supports resource selection, evidence appraisal, candidate prioritization, formal classification support, documentation, and reinterpretation.
-
-It is not:
-
-- A fixed pipeline or mandatory tool list.
-- A clinically validated decision-support system.
-- An automated classifier.
-- A substitute for validated laboratory workflows, ACMG/AMP criteria, applicable ClinGen specifications, clinical governance, or expert judgment.
-
-## Core principle
-
-Resources are included as **representative, context-appropriate options**, not universal requirements. Each entry records what question a resource addresses, why it is included, when it may be appropriate, what its output cannot establish alone, and its principal limitations and dependencies.
-
-## Repository layout
-
-- `data/resource_catalog.csv` — primary, machine-readable catalog of core representative resources.
-- `data/resource_catalog.json` — JSON mirror of the catalog.
-- `data/workflow_mapping.csv` — 11-stage post-analytical workflow mapping.
-- `data/resource_dependencies.csv` — common dependency and non-independence considerations.
-- `docs/resource_selection_rationales.md` — readable rationale entries for all resources.
-- `docs/governance.md` — inclusion, review, update, and retirement policy.
-- `docs/contribution_guide.md` — instructions for proposing additions or updates.
-- `schemas/resource_catalog_schema.md` — field definitions and controlled vocabulary.
-- `templates/resource_entry_template.md` — entry template for new resources.
-- `CHANGELOG.md` — release history.
-
-## Workflow stages
-
-1. Variant-level quality review
-2. Variant-level filtering
-3. Genome and transcript annotation
-4. Population-frequency assessment
-5. Phenotype- and gene-based prioritization
-6. Gene–disease association assessment
-7. Computational variant-effect assessment
-8. Splicing assessment
-9. Functional, clinical, and literature evidence integration
-10. ACMG/AMP-based classification
-11. Reporting, documentation, and reinterpretation
-
-## Use guidance
-
-1. Define the analytical question.
-2. Select only resources that address that question in the case context.
-3. Record resource version/release, access date, genome build, transcript model, inputs, outputs, and key decisions.
-4. Assess provenance, methodological quality, biological relevance, clinical applicability, and possible dependence among sources.
-5. Do not infer pathogenicity, causality, or diagnostic relevance from a single database entry, prediction score, or phenotype ranking.
-6. Apply formal clinical classification using applicable ACMG/AMP criteria, relevant specifications, validated laboratory procedures, and expert review.
+The list is selective. A resource is included for a defined question in that work, together with the main limit on its use. Inclusion is not a recommendation to run it in every case.
 
 ## Citation
 
-If you use WER-KB, cite the associated manuscript once bibliographic details are available. Until then, cite this repository by release tag and commit hash.
+Please cite the manuscript:
 
-## License and disclaimer
+> An evidence-based knowledge base for clinical WES/WGS variant interpretation and prioritization.
 
-This repository is intended for research, educational, and framework-development purposes. It is not medical advice and must not be used as a stand-alone basis for clinical diagnosis or patient management. Adopt an explicit license before public release.
+Until a DOI is available, also cite this repository:
+
+> WER-KB contributors. WER-KB (v0.2.0). https://github.com/timt-web/WER-KB
+
+[`CITATION.cff`](CITATION.cff) is included so GitHub can format the repository citation. If you rely on a particular snapshot, name the release tag and commit.
+
+## Scope
+
+The catalog is about post-analytical interpretation of germline SNVs and small indels from clinical whole-exome or whole-genome sequencing. That includes choosing a resource, reading its evidence, prioritizing candidates, supporting classification, writing the record, and deciding when to look again.
+
+It is not a pipeline, a required tool list, a clinically validated decision-support system, or an automated classifier. It also does not replace a validated laboratory procedure, the ACMG/AMP criteria, an applicable ClinGen specification, local governance, or review by someone qualified to sign out the case.
+
+## Workflow
+
+The same 11 stages are written out with their resources in [`docs/workflow.md`](docs/workflow.md). The short form is the question, then the limit.
+
+1. **Variant-level quality review.** Are the post-calling quality metrics and the call itself plausible for interpretation? Technical outputs are pipeline and parameter dependent.
+2. **Variant-level filtering.** Which variants remain after documented, case-appropriate filters and normalization? Filtering does not establish pathogenicity.
+3. **Genome and transcript annotation.** Which genome build, gene, transcript, and molecular consequence apply to this variant? Transcript selection and release differences can alter interpretation.
+4. **Population-frequency assessment.** Is the observed allele frequency compatible with the proposed disease model and ancestry context? Rarity alone does not establish pathogenicity.
+5. **Phenotype- and gene-based prioritization.** Which genes or variants rank highest given the structured phenotype and the inheritance context? Prioritization is not proof of causality.
+6. **Gene–disease association assessment.** How strong is the gene–disease relationship for this clinical question? Curation coverage and strength vary.
+7. **Computational variant-effect assessment.** Which computational, regulatory, or protein-level observations apply to this variant class? Predictions and annotations are supportive, not autonomous clinical evidence.
+8. **Splicing assessment.** Could this variant alter splicing of a clinically relevant transcript? Predicted splice effects require contextual and, where possible, experimental corroboration.
+9. **Functional, clinical, and literature evidence integration.** Which functional, clinical, and literature observations are relevant, and which of them repeat the same underlying data? A collected set of observations does not establish pathogenicity, and sources that share underlying data do not provide independent confirmation.
+10. **ACMG/AMP-based classification.** Which ACMG/AMP criteria and ClinGen specifications apply after the evidence has been appraised? Automated support tools do not replace contextual expert classification.
+11. **Reporting, documentation, and reinterpretation.** What resources, versions, evidence, decisions, and limitations must the report preserve for later reinterpretation? Evidence and interpretations may change over time.
+
+## Using an entry
+
+Start from the question, not from a favourite tool. Match it to a stage, then read the entries whose evidence type fits the case. Notes on why each resource was included are in [`docs/resource_selection_rationales.md`](docs/resource_selection_rationales.md).
+
+When you use one, write down the release, the date you looked, the genome build, the transcript, what you put in, what you got back, and what you decided. Ask where the data came from, whether the method fits the variant class, and whether another source you are using is really the same evidence under a different name.
+
+A frequency, a score, a phenotype rank, or a database assertion answers only the question recorded for that resource. Classification still goes through the ACMG/AMP criteria, any ClinGen specification that applies, the laboratory procedure, and someone who can review the case.
+
+## Files
+
+| Path | What it is |
+|---|---|
+| [`data/resource_catalog.csv`](data/resource_catalog.csv) | The catalog. Edit this when a resource changes. |
+| [`data/workflow_mapping.csv`](data/workflow_mapping.csv) | Stage names, questions, and limits. |
+| [`data/resource_dependencies.csv`](data/resource_dependencies.csv) | Where resources may share data, training material, or papers. |
+| [`data/resource_catalog.json`](data/resource_catalog.json) | The same catalog in JSON. Schema: [`schemas/resource_catalog.schema.json`](schemas/resource_catalog.schema.json). |
+| [`docs/workflow.md`](docs/workflow.md) | The 11 stages with their resources. |
+| [`docs/resource_selection_rationales.md`](docs/resource_selection_rationales.md) | A short note on each resource. |
+| [`schemas/resource_catalog_schema.md`](schemas/resource_catalog_schema.md) | Field definitions and allowed values. |
+| [`docs/governance.md`](docs/governance.md) | How entries are added, reviewed, and retired. |
+| [`docs/contribution_guide.md`](docs/contribution_guide.md) | How to propose a change. |
+
+After a change to the tables, refresh the JSON and the two docs, then check them:
+
+```bash
+python3 scripts/build_catalog.py
+python3 scripts/validate_catalog.py
+```
+
+Before a release, also run `python3 scripts/check_urls.py`. An HTTP 403 from that check means the site blocked the script; it does not by itself mean the page is gone. The validator also runs on pull requests.
+
+## Disclaimer
+
+WER-KB is for research, teaching, and methods work. It is not medical advice, and it is not a basis on its own for a diagnosis or for managing a patient.
+
+## License
+
+[MIT](LICENSE). Copyright (c) 2026 WER-KB contributors.

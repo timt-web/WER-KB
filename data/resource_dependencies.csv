@@ -1,6 +1,8 @@
 evidence_domain,resources,potential_dependency,interpretive_action
 Computational predictors,CADD; REVEL; SIFT; PolyPhen-2; AlphaMissense,"Potential overlap in features, training data, annotations, or assumptions.",Do not count agreement as automatically independent confirmation.
+Splicing predictors,SpliceAI; MaxEntScan; dbscSNV,"Models differ in features, training era, and transcript context. Agreement is still computational.","Concordant splice scores are not experimental evidence of aberrant splicing."
 Clinical assertion sources,ClinVar; ClinGen; HGMD; Mastermind; PubMed,Assertions and summaries may trace to the same primary studies or submissions.,Trace claims to primary evidence where possible.
+Classification-support tools,InterVar; VarSome; Franklin,"Implementations can share ACMG/AMP rules, population annotations, and submitted assertions.","Compare the activated criteria with the underlying evidence rather than treating concordant classifications as confirmation."
 Transcript/annotation sources,Ensembl; RefSeq; GENCODE; MANE,Different transcript sets may produce different consequences; matched sources may overlap.,"Record genome build, transcript accession, release, and selection rationale."
 Population datasets,gnomAD; TOPMed; 1000 Genomes; Iranome,"Cohorts, ancestry labels, and processing differ; some groups may overlap conceptually or not be interchangeable.","Interpret frequency in the context of ancestry, coverage, and disease model."
 Regulatory resources,GTEx; ENCODE; RegulomeDB; FANTOM5,"Aggregated annotations can reuse shared assays, datasets, or inferred features.","Treat outputs as contextual support, not independent proof."

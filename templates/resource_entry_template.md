@@ -7,14 +7,16 @@
 - **Analytical function:**
 - **Workflow stage(s):**
 - **Evidence type:**
+- **Genome build:**
 - **Official URL:**
 - **Version or release:**
+- **Recheck at use:** yes or no
 - **Access date:**
 - **Maintenance status:**
 
 ### Analytical question
 
-What defined question does this resource address?
+Which workflow-stage question does this resource address?
 
 ### Primary purpose
 
@@ -30,15 +32,15 @@ Describe the case contexts, variant classes, or data conditions in which use may
 
 ### Interpretation boundary
 
-State what the output cannot establish by itself. For example, a population frequency resource does not independently establish pathogenicity; a predictor does not independently classify a variant.
+State what the output cannot establish by itself. A population-frequency resource does not independently establish pathogenicity. A predictor does not independently classify a variant.
 
 ### Inputs, outputs, and compatibility
 
-Record input format, output format, genome build, transcript requirements, APIs, and relevant technical constraints.
+Record input format, output format, genome-build tokens, transcript requirements, APIs, and relevant technical constraints.
 
 ### Evidence provenance and validation
 
-Describe the origin of the data or model and available validation/benchmarking context.
+Describe the origin of the data or model and available validation or benchmarking context. Record the release that was checked. Use `not recorded` only when no release identifier was captured, and set recheck-at-use to yes.
 
 ### Key limitations and potential bias
 
@@ -46,7 +48,7 @@ List limitations that could change interpretation.
 
 ### Complementary resources and possible dependencies
 
-List complementary sources and identify overlap in data, publications, annotations, or model features where known.
+List complementary `resource_id` values. Identify overlap in data, publications, annotations, or model features where known. Put non-catalogued context, such as RNA evidence or laboratory SOPs, in complementary context.
 
 ### Update note
 
