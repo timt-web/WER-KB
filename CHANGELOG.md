@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3.0 — 2026-10-14
+
+- Cited the manuscript under its current title and described WER-KB as the updateable implementation and documentation layer for resource selection and evidence integration.
+- Aligned analytical functions, primary purposes, evidence types, workflow positions, and key limitations with Table 1, and recorded the supporting citation for each resource.
+- Limited the core representative set to the resources named in Table 1. Retired MSeqDR-QM and the separate Richards et al. 2015 catalog row. Added the ACMG points to consider on reevaluation and reanalysis.
+- Mapped ClinGen to reporting and reinterpretation, regulatory and structural resources to stages 7–9, and GeMSTONE to stages 5–9, context dependent.
+
 ## v0.2.0 — 2026-10-10
 
 - Extended the catalog schema with controlled evidence types, maintenance states, genome-build tokens, complementary resource identifiers, and a separate recheck-at-use flag.

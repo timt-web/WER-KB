@@ -1,21 +1,25 @@
 # Resource selection rationales
 
-These notes record why a resource is in the catalog, the situation in which it can be useful, and the limit of what its output can support. Presence in the catalog does not mean the resource should be used in every case.
+These notes record the analytical purpose of each representative resource, the context in which it may be used, and the key limitations of its output. Resources are representative as opposed to mandatory.
 
 ## GATK
 
 - **Identifier:** gatk
 - **Class:** tool
-- **Analytical function:** Variant-level quality control and filtering
-- **Workflow stage(s):** 1;2
+- **Analytical function:** Variant-Level Quality Control & Filtering
+- **Workflow position:** 1;2
 - **Evidence type:** Technical
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://gatk.broadinstitute.org/
 
+### Analytical purpose
+
+Variant quality assessment and filtering
+
 ### Selection rationale
 
-Representative toolkit for reproducible variant calling and post-calling quality filtering.
+Representative toolkit for variant quality assessment and filtering.
 
 ### Appropriate use
 
@@ -33,11 +37,15 @@ Output: Filtered and annotated VCFs; QC metrics
 
 ### Key limitations
 
-Pipeline and parameter dependent; implementation-specific.
+Pipeline- and parameter-dependent.
 
 ### Complementary resources
 
 bcftools; VCFtools
+
+### Supporting citation
+
+DePristo MA, Banks E, Poplin R, Garimella KV, Maguire JR, Hartl C, et al. A framework for variation discovery and genotyping using next-generation DNA sequencing data. Nat Genet. 2011;43(5):491-498. doi:10.1038/ng.806.
 
 ### Traceability
 
@@ -47,12 +55,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** bcftools
 - **Class:** tool
-- **Analytical function:** Variant-level quality control and filtering
-- **Workflow stage(s):** 1;2
+- **Analytical function:** Variant-Level Quality Control & Filtering
+- **Workflow position:** 1;2
 - **Evidence type:** Technical
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://samtools.github.io/bcftools/
+
+### Analytical purpose
+
+Variant quality assessment and filtering
 
 ### Selection rationale
 
@@ -74,11 +86,15 @@ Output: Processed VCF/BCF and QC summaries
 
 ### Key limitations
 
-Command and threshold dependent; requires validated local workflow.
+Pipeline- and parameter-dependent.
 
 ### Complementary resources
 
 GATK; VCFtools
+
+### Supporting citation
+
+Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, et al. Twelve years of SAMtools and BCFtools. GigaScience. 2021;10(2):giab008. doi:10.1093/gigascience/giab008.
 
 ### Traceability
 
@@ -88,16 +104,20 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** vcftools
 - **Class:** tool
-- **Analytical function:** Variant-level quality control and filtering
-- **Workflow stage(s):** 1;2
+- **Analytical function:** Variant-Level Quality Control & Filtering
+- **Workflow position:** 1;2
 - **Evidence type:** Technical
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active/legacy use
 - **Official resource:** https://vcftools.github.io/
 
+### Analytical purpose
+
+Variant quality assessment and filtering
+
 ### Selection rationale
 
-Included for transparent VCF-level filtering and summary operations in post-calling workflows.
+Included for transparent VCF-level filtering and summary operations in variant quality assessment and filtering.
 
 ### Appropriate use
 
@@ -115,11 +135,15 @@ Output: Filtered VCFs and summary metrics
 
 ### Key limitations
 
-Feature set and outputs depend on VCF quality and local parameters. Maintenance is legacy; bcftools covers many of the same VCF operations.
+Pipeline- and parameter-dependent. Maintenance is legacy; bcftools covers many of the same VCF operations.
 
 ### Complementary resources
 
 GATK; bcftools
+
+### Supporting citation
+
+Danecek P, Auton A, Abecasis G, Albers CA, Banks E, DePristo MA, et al. The variant call format and VCFtools. Bioinformatics. 2011;27(15):2156-2158. doi:10.1093/bioinformatics/btr330.
 
 ### Traceability
 
@@ -129,12 +153,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** ensembl
 - **Class:** database
-- **Analytical function:** Genome and transcript annotation
-- **Workflow stage(s):** 3
+- **Analytical function:** Genome & Transcript Annotation
+- **Workflow position:** 3
 - **Evidence type:** Reference/annotation
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://www.ensembl.org/
+
+### Analytical purpose
+
+Variant, gene, and transcript annotation
 
 ### Selection rationale
 
@@ -156,11 +184,15 @@ Output: Gene/transcript context and annotations
 
 ### Key limitations
 
-Transcript choice and release changes can alter consequences.
+Transcript and genome-build discrepancies.
 
 ### Complementary resources
 
 RefSeq; GENCODE; MANE
+
+### Supporting citation
+
+Cunningham F, Allen JE, Allen J, Alvarez-Jarreta J, Amode MR, Armean IM, et al. Ensembl 2024. Nucleic Acids Res. 2024;52(D1):D891-D899. doi:10.1093/nar/gkad1049.
 
 ### Traceability
 
@@ -170,12 +202,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** refseq
 - **Class:** database
-- **Analytical function:** Genome and transcript annotation
-- **Workflow stage(s):** 3
+- **Analytical function:** Genome & Transcript Annotation
+- **Workflow position:** 3
 - **Evidence type:** Reference/annotation
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://www.ncbi.nlm.nih.gov/refseq/
+
+### Analytical purpose
+
+Variant, gene, and transcript annotation
 
 ### Selection rationale
 
@@ -197,11 +233,15 @@ Output: Reference transcript and sequence records
 
 ### Key limitations
 
-Transcript updates and alternative isoforms require explicit selection.
+Transcript and genome-build discrepancies. Transcript updates and alternative isoforms require explicit selection.
 
 ### Complementary resources
 
 Ensembl; MANE; GENCODE
+
+### Supporting citation
+
+O’Leary NA, Wright MW, Brister JR, Ciufo S, Haddad D, McVeigh R, et al. Reference sequence (RefSeq) database at NCBI: current status, taxonomic expansion, and functional annotation. Nucleic Acids Res. 2016;44(D1):D733-D745. doi:10.1093/nar/gkv1189.
 
 ### Traceability
 
@@ -211,12 +251,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** gencode
 - **Class:** database
-- **Analytical function:** Genome and transcript annotation
-- **Workflow stage(s):** 3
+- **Analytical function:** Genome & Transcript Annotation
+- **Workflow position:** 3
 - **Evidence type:** Reference/annotation
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://www.gencodegenes.org/
+
+### Analytical purpose
+
+Variant, gene, and transcript annotation
 
 ### Selection rationale
 
@@ -238,11 +282,15 @@ Output: Gene and transcript annotation sets
 
 ### Key limitations
 
-Release-specific; transcript-model differences may affect consequence calls.
+Transcript and genome-build discrepancies.
 
 ### Complementary resources
 
 Ensembl; MANE; RefSeq
+
+### Supporting citation
+
+Frankish A, Diekhans M, Jungreis I, Lagarde J, Loveland JE, Mudge JM, et al. GENCODE 2021. Nucleic Acids Res. 2021;49(D1):D916-D923. doi:10.1093/nar/gkaa1087.
 
 ### Traceability
 
@@ -252,12 +300,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** mane
 - **Class:** reference
-- **Analytical function:** Genome and transcript annotation
-- **Workflow stage(s):** 3
+- **Analytical function:** Genome & Transcript Annotation
+- **Workflow position:** 3
 - **Evidence type:** Reference/annotation
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://www.ncbi.nlm.nih.gov/refseq/MANE/
+
+### Analytical purpose
+
+Variant, gene, and transcript annotation
 
 ### Selection rationale
 
@@ -279,11 +331,15 @@ Output: Matched MANE Select/Plus Clinical transcripts
 
 ### Key limitations
 
-Coverage is not universal; updates occur over time.
+Transcript and genome-build discrepancies. Coverage is not universal; updates occur over time.
 
 ### Complementary resources
 
 RefSeq; Ensembl; GENCODE
+
+### Supporting citation
+
+Morales J, Pujar S, Loveland JE, Astashyn A, Bennett R, Berry A, et al. A joint NCBI and EMBL-EBI transcript set for clinical genomics and research. Nature. 2022;604(7905):310-315. doi:10.1038/s41586-022-04558-8.
 
 ### Traceability
 
@@ -293,12 +349,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** gnomad
 - **Class:** database
-- **Analytical function:** Population-frequency assessment
-- **Workflow stage(s):** 4
+- **Analytical function:** Population & Frequency
+- **Workflow position:** 4
 - **Evidence type:** Population
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://gnomad.broadinstitute.org/
+
+### Analytical purpose
+
+Population frequency assessment and frequency-based filtering
 
 ### Selection rationale
 
@@ -320,11 +380,15 @@ Output: Allele frequencies, coverage, ancestry-stratified context
 
 ### Key limitations
 
-Uneven ancestry representation, coverage differences, founder effects, and no phenotype linkage.
+Population representation and ancestry bias; rarity alone does not establish pathogenicity. Coverage differences, founder effects, and no phenotype linkage.
 
 ### Complementary resources
 
 TOPMed; 1000 Genomes; Iranome
+
+### Supporting citation
+
+Gudmundsson S, Singer-Berk M, Watts NA, Phu W, Goodrich JK, Solomonson M, et al. Variant interpretation using population databases: lessons from gnomAD. Hum Mutat. 2022;43(8):1012-1030. doi:10.1002/humu.24309.
 
 ### Traceability
 
@@ -334,12 +398,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** topmed
 - **Class:** database
-- **Analytical function:** Population-frequency assessment
-- **Workflow stage(s):** 4
+- **Analytical function:** Population & Frequency
+- **Workflow position:** 4
 - **Evidence type:** Population
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://bravo.sph.umich.edu/
+
+### Analytical purpose
+
+Population frequency assessment and frequency-based filtering
 
 ### Selection rationale
 
@@ -361,11 +429,15 @@ Output: Allele frequencies and coverage context
 
 ### Key limitations
 
-Population representation and dataset-specific processing must be considered.
+Population representation and ancestry bias; rarity alone does not establish pathogenicity.
 
 ### Complementary resources
 
 gnomAD; 1000 Genomes; Iranome
+
+### Supporting citation
+
+Taliun D, Harris DN, Kessler MD, Carlson J, Szpiech ZA, Torres R, et al. Sequencing of 53,831 diverse genomes from the NHLBI TOPMed Program. Nature. 2021;590(7845):290-299. doi:10.1038/s41586-021-03205-y.
 
 ### Traceability
 
@@ -375,12 +447,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** 1000-genomes
 - **Class:** database
-- **Analytical function:** Population-frequency assessment
-- **Workflow stage(s):** 4
+- **Analytical function:** Population & Frequency
+- **Workflow position:** 4
 - **Evidence type:** Population
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active/archival
 - **Official resource:** https://www.internationalgenome.org/
+
+### Analytical purpose
+
+Population frequency assessment and frequency-based filtering
 
 ### Selection rationale
 
@@ -402,11 +478,15 @@ Output: Allele frequencies and population context
 
 ### Key limitations
 
-Limited sample sizes for rare-variant inference relative to newer datasets.
+Population representation and ancestry bias; rarity alone does not establish pathogenicity. Limited sample sizes for rare-variant inference relative to newer datasets.
 
 ### Complementary resources
 
 gnomAD; TOPMed; Iranome
+
+### Supporting citation
+
+1000 Genomes Project Consortium. A global reference for human genetic variation. Nature. 2015;526(7571):68-74. doi:10.1038/nature15393.
 
 ### Traceability
 
@@ -416,12 +496,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** iranome
 - **Class:** database
-- **Analytical function:** Population-frequency assessment
-- **Workflow stage(s):** 4
+- **Analytical function:** Population & Frequency
+- **Workflow position:** 4
 - **Evidence type:** Population
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active/verify current status
 - **Official resource:** https://www.iranome.com/
+
+### Analytical purpose
+
+Population frequency assessment and frequency-based filtering
 
 ### Selection rationale
 
@@ -443,11 +527,15 @@ Output: Allele-frequency information from Iranian individuals
 
 ### Key limitations
 
-Sampling, coverage, and representativeness limitations.
+Population representation and ancestry bias; rarity alone does not establish pathogenicity.
 
 ### Complementary resources
 
 gnomAD; TOPMed; 1000 Genomes
+
+### Supporting citation
+
+Fattahi Z, Beheshtian M, Mohseni M, Poustchi H, Sellars E, Nezhadi SH, et al. Iranome: a catalog of genomic variations in the Iranian population. Hum Mutat. 2019;40(11):1968-1984. doi:10.1002/humu.23880.
 
 ### Traceability
 
@@ -457,12 +545,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** hpo
 - **Class:** ontology
-- **Analytical function:** Phenotype encoding and phenotype-driven gene prioritization
-- **Workflow stage(s):** 5
-- **Evidence type:** Phenotypic
-- **Genome build:** build independent
+- **Analytical function:** Phenotype & Gene Prioritization
+- **Workflow position:** 5
+- **Evidence type:** Phenotypic/computational
+- **Genome-build and transcript compatibility:** build independent
 - **Maintenance:** Active
 - **Official resource:** https://hpo.jax.org/
+
+### Analytical purpose
+
+Phenotype–gene matching and candidate prioritization
 
 ### Selection rationale
 
@@ -474,7 +566,7 @@ Use when clinical findings can be captured with sufficiently specific and tempor
 
 ### Interpretation boundary
 
-Phenotype similarity does not independently establish gene–disease causality or variant pathogenicity.
+HPO is phenotype encoding. Phenotype similarity does not independently establish gene–disease causality or variant pathogenicity.
 
 ### Inputs and outputs
 
@@ -484,11 +576,15 @@ Output: Ontology terms and phenotype similarity context
 
 ### Key limitations
 
-Incomplete, nonspecific, or inaccurately captured phenotypes reduce performance.
+Incomplete, nonspecific, or inaccurately captured phenotypes.
 
 ### Complementary resources
 
 Exomiser; LIRICAL; Phen2Gene
+
+### Supporting citation
+
+Köhler S, Gargano M, Matentzoglu N, Carmody LC, Lewis-Smith D, Vasilevsky NA, et al. The Human Phenotype Ontology in 2021. Nucleic Acids Res. 2021;49(D1):D1207-D1217. doi:10.1093/nar/gkaa1043.
 
 ### Traceability
 
@@ -498,12 +594,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** exomiser
 - **Class:** tool
-- **Analytical function:** Phenotype encoding and phenotype-driven gene prioritization
-- **Workflow stage(s):** 5
+- **Analytical function:** Phenotype & Gene Prioritization
+- **Workflow position:** 5
 - **Evidence type:** Phenotypic/computational
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://exomiser.readthedocs.io/en/latest/
+
+### Analytical purpose
+
+Phenotype–gene matching and candidate prioritization
 
 ### Selection rationale
 
@@ -525,11 +625,15 @@ Output: Ranked genes/variants with explanatory scores
 
 ### Key limitations
 
-Dependent on phenotype quality, knowledgebase coverage, inheritance assumptions, and model configuration.
+Incomplete, nonspecific, or inaccurately captured phenotypes. Dependent on phenotype quality, knowledgebase coverage, inheritance assumptions, and model configuration.
 
 ### Complementary resources
 
 HPO; LIRICAL; Phen2Gene
+
+### Supporting citation
+
+Smedley D, Jacobsen JOB, Jäger M, Köhler S, Holtgrewe M, Schubach M, et al. Next-generation diagnostics and disease-gene discovery with the Exomiser. Nat Protoc. 2015;10(12):2004-2015. doi:10.1038/nprot.2015.124.
 
 ### Traceability
 
@@ -539,12 +643,16 @@ Release reviewed on 2026-10-10: 15.1.1. Check the current release again when the
 
 - **Identifier:** lirical
 - **Class:** tool
-- **Analytical function:** Phenotype encoding and phenotype-driven gene prioritization
-- **Workflow stage(s):** 5
+- **Analytical function:** Phenotype & Gene Prioritization
+- **Workflow position:** 5
 - **Evidence type:** Phenotypic/computational
-- **Genome build:** build independent;build dependent
+- **Genome-build and transcript compatibility:** build independent;build dependent
 - **Maintenance:** Active
 - **Official resource:** https://lirical.readthedocs.io/
+
+### Analytical purpose
+
+Phenotype–gene matching and candidate prioritization
 
 ### Selection rationale
 
@@ -566,11 +674,15 @@ Output: Ranked diagnoses/genes with likelihood-based output
 
 ### Key limitations
 
-Sensitive to phenotype completeness, disease annotations, and input assumptions.
+Incomplete, nonspecific, or inaccurately captured phenotypes. Sensitive to phenotype completeness, disease annotations, and input assumptions.
 
 ### Complementary resources
 
 HPO; Exomiser; Phen2Gene
+
+### Supporting citation
+
+Robinson PN, Ravanmehr V, Jacobsen JOB, Danis D, Zhang H, Carmody LC, et al. Interpretable clinical genomics with a likelihood ratio paradigm. Am J Hum Genet. 2020;107(3):403-417. doi:10.1016/j.ajhg.2020.06.021.
 
 ### Traceability
 
@@ -580,12 +692,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** phen2gene
 - **Class:** tool
-- **Analytical function:** Phenotype encoding and phenotype-driven gene prioritization
-- **Workflow stage(s):** 5
+- **Analytical function:** Phenotype & Gene Prioritization
+- **Workflow position:** 5
 - **Evidence type:** Phenotypic/computational
-- **Genome build:** build independent
+- **Genome-build and transcript compatibility:** build independent
 - **Maintenance:** Active/verify current status
 - **Official resource:** https://phen2gene.wglab.org/
+
+### Analytical purpose
+
+Phenotype–gene matching and candidate prioritization
 
 ### Selection rationale
 
@@ -607,11 +723,15 @@ Output: Ranked candidate genes
 
 ### Key limitations
 
-Limited by phenotype encoding and underlying gene–phenotype knowledge.
+Incomplete, nonspecific, or inaccurately captured phenotypes. Limited by phenotype encoding and underlying gene–phenotype knowledge.
 
 ### Complementary resources
 
 HPO; Exomiser; LIRICAL
+
+### Supporting citation
+
+Zhao M, Havrilla JM, Fang L, Chen Y, Peng J, Liu C, et al. Phen2Gene: rapid phenotype-driven gene prioritization for rare diseases. NAR Genom Bioinform. 2020;2(2):lqaa032. doi:10.1093/nargab/lqaa032.
 
 ### Traceability
 
@@ -621,12 +741,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** clingen
 - **Class:** curation resource
-- **Analytical function:** Gene–disease association assessment;Clinical evidence retrieval and curation
-- **Workflow stage(s):** 6;9
+- **Analytical function:** Gene–Disease Association;Clinical Evidence & Curation;Reporting & Reinterpretation
+- **Workflow position:** 6;9;11
 - **Evidence type:** Clinical/curated
-- **Genome build:** build independent;build dependent
+- **Genome-build and transcript compatibility:** build independent;build dependent
 - **Maintenance:** Active
 - **Official resource:** https://clinicalgenome.org/
+
+### Analytical purpose
+
+Assessment of gene–disease validity and clinical relevance; Retrieval and assessment of clinical and literature-based evidence; Clinical reporting, documentation, and reassessment
 
 ### Selection rationale
 
@@ -648,11 +772,15 @@ Output: Curated gene–disease validity assertions and supporting evidence summa
 
 ### Key limitations
 
-Curation status and coverage evolve. This entry does not contain the gene-specific ACMG/AMP specifications, which are catalogued separately.
+Evidence is evolving and may vary in strength and curation status. Conflicting, heterogeneous, or incompletely curated evidence. Evidence and interpretations may change over time. This entry does not contain the gene-specific ACMG/AMP specifications, which are catalogued separately.
 
 ### Complementary resources
 
 OMIM; Orphanet; PanelApp; ClinVar; ClinGen specifications
+
+### Supporting citation
+
+Rehm HL, Berg JS, Brooks LD, Bustamante CD, Evans JP, Landrum MJ, et al. ClinGen—the Clinical Genome Resource. N Engl J Med. 2015;372(23):2235-2242. doi:10.1056/NEJMsr1406261.
 
 ### Traceability
 
@@ -662,12 +790,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** omim
 - **Class:** database
-- **Analytical function:** Gene–disease association assessment
-- **Workflow stage(s):** 6
+- **Analytical function:** Gene–Disease Association
+- **Workflow position:** 6
 - **Evidence type:** Clinical/curated
-- **Genome build:** build independent
+- **Genome-build and transcript compatibility:** build independent
 - **Maintenance:** Active
 - **Official resource:** https://www.omim.org/
+
+### Analytical purpose
+
+Assessment of gene–disease validity and clinical relevance
 
 ### Selection rationale
 
@@ -689,11 +821,15 @@ Output: Gene–phenotype and disease records
 
 ### Key limitations
 
-Curation depth and update timing vary by entry.
+Evidence is evolving and may vary in strength and curation status. Curation depth and update timing vary by entry.
 
 ### Complementary resources
 
 ClinGen; Orphanet; PanelApp
+
+### Supporting citation
+
+Hamosh A, Scott AF, Amberger JS, Bocchini CA, McKusick VA. Online Mendelian Inheritance in Man (OMIM), a knowledgebase of human genes and genetic disorders. Nucleic Acids Res. 2005;33(Database issue):D514-D517. doi:10.1093/nar/gki033.
 
 ### Traceability
 
@@ -703,12 +839,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** orphanet
 - **Class:** database
-- **Analytical function:** Gene–disease association assessment
-- **Workflow stage(s):** 6
+- **Analytical function:** Gene–Disease Association
+- **Workflow position:** 6
 - **Evidence type:** Clinical/curated
-- **Genome build:** build independent
+- **Genome-build and transcript compatibility:** build independent
 - **Maintenance:** Active
 - **Official resource:** https://www.orpha.net/
+
+### Analytical purpose
+
+Assessment of gene–disease validity and clinical relevance
 
 ### Selection rationale
 
@@ -730,11 +870,15 @@ Output: Rare disease and gene association context
 
 ### Key limitations
 
-Coverage, curation, and update timing vary.
+Evidence is evolving and may vary in strength and curation status.
 
 ### Complementary resources
 
 ClinGen; OMIM; PanelApp
+
+### Supporting citation
+
+Rath A, Olry A, Dhombres F, Brandt MM, Urbero B, Ayme S. Representation of rare diseases in health information systems: the Orphanet approach to serve a wide range of end users. Hum Mutat. 2012;33(5):803-808. doi:10.1002/humu.22078.
 
 ### Traceability
 
@@ -744,12 +888,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** panelapp
 - **Class:** curation resource
-- **Analytical function:** Gene–disease association assessment
-- **Workflow stage(s):** 6
+- **Analytical function:** Gene–Disease Association
+- **Workflow position:** 6
 - **Evidence type:** Clinical/curated
-- **Genome build:** build independent
+- **Genome-build and transcript compatibility:** build independent
 - **Maintenance:** Active
 - **Official resource:** https://panelapp.genomicsengland.co.uk/
+
+### Analytical purpose
+
+Assessment of gene–disease validity and clinical relevance
 
 ### Selection rationale
 
@@ -771,11 +919,15 @@ Output: Panel membership and evidence level
 
 ### Key limitations
 
-Panel content and evidence ratings change; jurisdiction-specific practices may differ.
+Evidence is evolving and may vary in strength and curation status. Panel content and evidence ratings change; jurisdiction-specific practices may differ.
 
 ### Complementary resources
 
 ClinGen; OMIM; Orphanet
+
+### Supporting citation
+
+Martin AR, Williams E, Foulger RE, Leigh S, Daugherty LC, Niblock O, et al. PanelApp crowdsources expert knowledge to establish consensus diagnostic gene panels. Nat Genet. 2019;51(11):1560-1565. doi:10.1038/s41588-019-0528-2.
 
 ### Traceability
 
@@ -785,12 +937,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** cadd
 - **Class:** predictor
-- **Analytical function:** Computational variant-effect prediction
-- **Workflow stage(s):** 7
+- **Analytical function:** Computational Variant-Effect Prediction
+- **Workflow position:** 7
 - **Evidence type:** Computational
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://cadd.gs.washington.edu/
+
+### Analytical purpose
+
+Prediction of potential functional effects
 
 ### Selection rationale
 
@@ -812,11 +968,15 @@ Output: Phred-scaled deleteriousness scores
 
 ### Key limitations
 
-Model and training-data dependence; calibration and applicability vary by context.
+Model-dependent performance and applicability across variant types and populations.
 
 ### Complementary resources
 
 REVEL; SIFT; PolyPhen-2; AlphaMissense
+
+### Supporting citation
+
+Rentzsch P, Witten D, Cooper GM, Shendure J, Kircher M. CADD: predicting the deleteriousness of variants throughout the human genome. Nucleic Acids Res. 2019;47(D1):D886-D894. doi:10.1093/nar/gky1016.
 
 ### Traceability
 
@@ -826,12 +986,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** revel
 - **Class:** predictor
-- **Analytical function:** Computational variant-effect prediction
-- **Workflow stage(s):** 7
+- **Analytical function:** Computational Variant-Effect Prediction
+- **Workflow position:** 7
 - **Evidence type:** Computational
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://sites.google.com/site/revelgenomics/
+
+### Analytical purpose
+
+Prediction of potential functional effects
 
 ### Selection rationale
 
@@ -853,11 +1017,15 @@ Output: Ensemble prediction scores
 
 ### Key limitations
 
-Training-data overlap, calibration, and gene/variant-specific performance limitations.
+Model-dependent performance and applicability across variant types and populations. Training-data overlap, calibration, and gene- and variant-specific performance limitations.
 
 ### Complementary resources
 
 CADD; SIFT; PolyPhen-2; AlphaMissense
+
+### Supporting citation
+
+Ioannidis NM, Rothstein JH, Pejaver V, Middha S, McDonnell SK, Baheti S, et al. REVEL: an ensemble method for predicting the pathogenicity of rare missense variants. Am J Hum Genet. 2016;99(4):877-885. doi:10.1016/j.ajhg.2016.08.016.
 
 ### Traceability
 
@@ -867,12 +1035,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** sift
 - **Class:** predictor
-- **Analytical function:** Computational variant-effect prediction
-- **Workflow stage(s):** 7
+- **Analytical function:** Computational Variant-Effect Prediction
+- **Workflow position:** 7
 - **Evidence type:** Computational
-- **Genome build:** build dependent
+- **Genome-build and transcript compatibility:** build dependent
 - **Maintenance:** Active/legacy use
 - **Official resource:** https://sift.bii.a-star.edu.sg/
+
+### Analytical purpose
+
+Prediction of potential functional effects
 
 ### Selection rationale
 
@@ -894,11 +1066,15 @@ Output: Predicted tolerated/deleterious output
 
 ### Key limitations
 
-Limited scope; performance and dependence on shared features must be considered. The public website returned an error on a 2026-10-10 check.
+Model-dependent performance and applicability across variant types and populations. The public website returned an error on a 2026-10-10 check.
 
 ### Complementary resources
 
 REVEL; PolyPhen-2; CADD
+
+### Supporting citation
+
+Ng PC, Henikoff S. SIFT: predicting amino acid changes that affect protein function. Nucleic Acids Res. 2003;31(13):3812-3814. doi:10.1093/nar/gkg509.
 
 ### Traceability
 
@@ -908,12 +1084,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** polyphen-2
 - **Class:** predictor
-- **Analytical function:** Computational variant-effect prediction
-- **Workflow stage(s):** 7
+- **Analytical function:** Computational Variant-Effect Prediction
+- **Workflow position:** 7
 - **Evidence type:** Computational
-- **Genome build:** build dependent
+- **Genome-build and transcript compatibility:** build dependent
 - **Maintenance:** Active/legacy use
 - **Official resource:** https://genetics.bwh.harvard.edu/pph2/
+
+### Analytical purpose
+
+Prediction of potential functional effects
 
 ### Selection rationale
 
@@ -935,11 +1115,15 @@ Output: Predicted impact categories and scores
 
 ### Key limitations
 
-Variant- and gene-specific performance; limited clinical specificity.
+Model-dependent performance and applicability across variant types and populations. Limited clinical specificity.
 
 ### Complementary resources
 
 REVEL; SIFT; CADD
+
+### Supporting citation
+
+Adzhubei IA, Schmidt S, Peshkin L, Ramensky VE, Gerasimova A, Bork P, et al. A method and server for predicting damaging missense mutations. Nat Methods. 2010;7(4):248-249. doi:10.1038/nmeth0410-248.
 
 ### Traceability
 
@@ -949,12 +1133,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** alphamissense
 - **Class:** predictor
-- **Analytical function:** Computational variant-effect prediction
-- **Workflow stage(s):** 7
+- **Analytical function:** Computational Variant-Effect Prediction
+- **Workflow position:** 7
 - **Evidence type:** Computational
-- **Genome build:** protein or transcript mapping
+- **Genome-build and transcript compatibility:** protein or transcript mapping
 - **Maintenance:** Active
 - **Official resource:** https://alphamissense.hegelab.org/
+
+### Analytical purpose
+
+Prediction of potential functional effects
 
 ### Selection rationale
 
@@ -976,11 +1164,15 @@ Output: Prediction scores for amino-acid substitutions
 
 ### Key limitations
 
-Model applicability, calibration, and biological/clinical context remain limiting.
+Model-dependent performance and applicability across variant types and populations.
 
 ### Complementary resources
 
 REVEL; CADD; ClinGen
+
+### Supporting citation
+
+Cheng J, Novati G, Pan J, Bycroft C, Žemgulytė A, Applebaum T, et al. Accurate proteome-wide missense variant effect prediction with AlphaMissense. Science. 2023;382(6673):eadg7492. doi:10.1126/science.adg7492.
 
 ### Traceability
 
@@ -990,12 +1182,16 @@ Release reviewed on 2026-10-10: Cheng et al. 2023. Check the current release aga
 
 - **Identifier:** spliceai
 - **Class:** predictor
-- **Analytical function:** Splicing assessment
-- **Workflow stage(s):** 8
+- **Analytical function:** Splicing Assessment
+- **Workflow position:** 8
 - **Evidence type:** Computational/transcript-based
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://spliceailookup.broadinstitute.org/
+
+### Analytical purpose
+
+Assessment of potential splicing effects
 
 ### Selection rationale
 
@@ -1017,7 +1213,7 @@ Output: Splice alteration delta scores and positions
 
 ### Key limitations
 
-Tissue, transcript, mechanism, and calibration dependence.
+Tissue, transcript, and context dependence.
 
 ### Complementary resources
 
@@ -1027,6 +1223,10 @@ MaxEntScan; dbscSNV
 
 RNA evidence
 
+### Supporting citation
+
+Jaganathan K, Kyriazopoulou Panagiotopoulou S, McRae JF, Darbandi SF, Knowles D, Li YI, et al. Predicting splicing from primary sequence with deep learning. Cell. 2019;176(3):535-548.e24. doi:10.1016/j.cell.2018.12.015.
+
 ### Traceability
 
 No release identifier was captured when this entry was reviewed on 2026-10-10. Check the current release again when the resource is used.
@@ -1035,12 +1235,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** maxentscan
 - **Class:** predictor
-- **Analytical function:** Splicing assessment
-- **Workflow stage(s):** 8
+- **Analytical function:** Splicing Assessment
+- **Workflow position:** 8
 - **Evidence type:** Computational/transcript-based
-- **Genome build:** build dependent
+- **Genome-build and transcript compatibility:** build dependent
 - **Maintenance:** Active/legacy use
 - **Official resource:** https://pubmed.ncbi.nlm.nih.gov/15285897/
+
+### Analytical purpose
+
+Assessment of potential splicing effects
 
 ### Selection rationale
 
@@ -1062,7 +1266,7 @@ Output: Splice-site score changes
 
 ### Key limitations
 
-Limited representation of tissue-specific and broader regulatory context.
+Tissue, transcript, and context dependence.
 
 ### Complementary resources
 
@@ -1072,6 +1276,10 @@ SpliceAI; dbscSNV
 
 RNA evidence
 
+### Supporting citation
+
+Yeo G, Burge CB. Maximum entropy modeling of short sequence motifs with applications to RNA splicing signals. J Comput Biol. 2004;11(2-3):377-394. doi:10.1089/1066527041410418.
+
 ### Traceability
 
 Release reviewed on 2026-10-10: Yeo and Burge 2004. The release cited here is fixed.
@@ -1080,12 +1288,16 @@ Release reviewed on 2026-10-10: Yeo and Burge 2004. The release cited here is fi
 
 - **Identifier:** dbscsnv
 - **Class:** database
-- **Analytical function:** Splicing assessment
-- **Workflow stage(s):** 8
+- **Analytical function:** Splicing Assessment
+- **Workflow position:** 8
 - **Evidence type:** Computational/transcript-based
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active/legacy use
 - **Official resource:** http://www.liulab.science/dbscsnv.html
+
+### Analytical purpose
+
+Assessment of potential splicing effects
 
 ### Selection rationale
 
@@ -1107,7 +1319,7 @@ Output: Splicing-related prediction scores
 
 ### Key limitations
 
-Scope is limited to consensus-region SNVs and to the underlying models. The scored set is the frozen v1.1 release. Distribution through dbNSFP does not make dbNSFP this resource.
+Tissue, transcript, and context dependence. The scored set is the frozen v1.1 release and is limited to consensus-region SNVs. Distribution through dbNSFP does not make dbNSFP this resource.
 
 ### Complementary resources
 
@@ -1117,6 +1329,10 @@ SpliceAI; MaxEntScan
 
 RNA evidence
 
+### Supporting citation
+
+Jian X, Boerwinkle E, Liu X. In silico prediction of splice-altering single nucleotide variants in the human genome. Nucleic Acids Res. 2014;42(22):13534-13544. doi:10.1093/nar/gku1206.
+
 ### Traceability
 
 Release reviewed on 2026-10-10: v1.1. The release cited here is fixed.
@@ -1125,12 +1341,16 @@ Release reviewed on 2026-10-10: v1.1. The release cited here is fixed.
 
 - **Identifier:** gtex
 - **Class:** database
-- **Analytical function:** Regulatory and expression evidence
-- **Workflow stage(s):** 7;8;9
+- **Analytical function:** Regulatory & Expression
+- **Workflow position:** 7;8;9
 - **Evidence type:** Regulatory/functional
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://gtexportal.org/
+
+### Analytical purpose
+
+Assessment of regulatory and expression-related evidence
 
 ### Selection rationale
 
@@ -1152,11 +1372,15 @@ Output: Expression and regulatory association context
 
 ### Key limitations
 
-Donor composition, tissue availability, context dependence, and association limitations.
+Tissue specificity and incomplete functional annotation. Donor composition, tissue availability, and association limitations.
 
 ### Complementary resources
 
 ENCODE; RegulomeDB; FANTOM5
+
+### Supporting citation
+
+GTEx Consortium. The GTEx Consortium atlas of genetic regulatory effects across human tissues. Science. 2020;369(6509):1318-1330. doi:10.1126/science.aaz1776.
 
 ### Traceability
 
@@ -1166,12 +1390,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** encode
 - **Class:** database
-- **Analytical function:** Regulatory and expression evidence
-- **Workflow stage(s):** 7;8;9
+- **Analytical function:** Regulatory & Expression
+- **Workflow position:** 7;8;9
 - **Evidence type:** Regulatory/functional
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://www.encodeproject.org/
+
+### Analytical purpose
+
+Assessment of regulatory and expression-related evidence
 
 ### Selection rationale
 
@@ -1193,11 +1421,15 @@ Output: Regulatory and functional genomic tracks
 
 ### Key limitations
 
-Cell-type and experimental-context specificity; incomplete coverage.
+Tissue specificity and incomplete functional annotation. Cell-type and experimental-context specificity; incomplete coverage.
 
 ### Complementary resources
 
 GTEx; RegulomeDB; FANTOM5
+
+### Supporting citation
+
+ENCODE Project Consortium. An integrated encyclopedia of DNA elements in the human genome. Nature. 2012;489(7414):57-74. doi:10.1038/nature11247.
 
 ### Traceability
 
@@ -1207,12 +1439,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** regulomedb
 - **Class:** database
-- **Analytical function:** Regulatory and expression evidence
-- **Workflow stage(s):** 7;9
+- **Analytical function:** Regulatory & Expression
+- **Workflow position:** 7;8;9
 - **Evidence type:** Regulatory/functional
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://regulomedb.org/
+
+### Analytical purpose
+
+Assessment of regulatory and expression-related evidence
 
 ### Selection rationale
 
@@ -1234,11 +1470,15 @@ Output: Regulatory evidence scores/annotations
 
 ### Key limitations
 
-Evidence aggregation and tissue/context limitations.
+Tissue specificity and incomplete functional annotation.
 
 ### Complementary resources
 
 ENCODE; GTEx; FANTOM5
+
+### Supporting citation
+
+Boyle AP, Hong EL, Hariharan M, Cheng Y, Schaub MA, Kasowski M, et al. Annotation of functional variation in personal genomes using RegulomeDB. Genome Res. 2012;22(9):1790-1797. doi:10.1101/gr.137323.112.
 
 ### Traceability
 
@@ -1248,12 +1488,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** fantom5
 - **Class:** database
-- **Analytical function:** Regulatory and expression evidence
-- **Workflow stage(s):** 7;9
+- **Analytical function:** Regulatory & Expression
+- **Workflow position:** 7;8;9
 - **Evidence type:** Regulatory/functional
-- **Genome build:** build dependent
+- **Genome-build and transcript compatibility:** build dependent
 - **Maintenance:** Active/verify current status
 - **Official resource:** https://fantom.gsc.riken.jp/5/
+
+### Analytical purpose
+
+Assessment of regulatory and expression-related evidence
 
 ### Selection rationale
 
@@ -1275,11 +1519,15 @@ Output: Regulatory and expression annotations
 
 ### Key limitations
 
-Coverage and context dependence; update status must be checked.
+Tissue specificity and incomplete functional annotation. Update status must be checked.
 
 ### Complementary resources
 
 ENCODE; GTEx; RegulomeDB
+
+### Supporting citation
+
+Forrest ARR, Kawaji H, Rehli M, Baillie JK, de Hoon MJL, Haberle V, et al. A promoter-level mammalian expression atlas. Nature. 2014;507(7493):462-470. doi:10.1038/nature13182.
 
 ### Traceability
 
@@ -1289,12 +1537,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** uniprot
 - **Class:** database
-- **Analytical function:** Structural and protein-function evidence
-- **Workflow stage(s):** 7;9
+- **Analytical function:** Structural & Protein Function
+- **Workflow position:** 7;8;9
 - **Evidence type:** Structural/functional
-- **Genome build:** build independent;protein or transcript mapping
+- **Genome-build and transcript compatibility:** build independent;protein or transcript mapping
 - **Maintenance:** Active
 - **Official resource:** https://www.uniprot.org/
+
+### Analytical purpose
+
+Assessment of protein structure and function
 
 ### Selection rationale
 
@@ -1316,11 +1568,15 @@ Output: Protein functional annotations
 
 ### Key limitations
 
-Annotation completeness and isoform mapping can vary.
+Structural prediction and functional uncertainty. Annotation completeness and isoform mapping can vary.
 
 ### Complementary resources
 
 InterPro; PDB; AlphaFold DB
+
+### Supporting citation
+
+UniProt Consortium. UniProt: the Universal Protein Knowledgebase in 2023. Nucleic Acids Res. 2023;51(D1):D523-D531. doi:10.1093/nar/gkac1052.
 
 ### Traceability
 
@@ -1330,12 +1586,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** pdb
 - **Class:** database
-- **Analytical function:** Structural and protein-function evidence
-- **Workflow stage(s):** 7;9
+- **Analytical function:** Structural & Protein Function
+- **Workflow position:** 7;8;9
 - **Evidence type:** Structural/functional
-- **Genome build:** build independent;protein or transcript mapping
+- **Genome-build and transcript compatibility:** build independent;protein or transcript mapping
 - **Maintenance:** Active
 - **Official resource:** https://www.rcsb.org/
+
+### Analytical purpose
+
+Assessment of protein structure and function
 
 ### Selection rationale
 
@@ -1357,11 +1617,15 @@ Output: Structural models and experimental metadata
 
 ### Key limitations
 
-Incomplete protein coverage; construct and experimental context limitations.
+Structural prediction and functional uncertainty. Incomplete protein coverage; construct and experimental context limitations.
 
 ### Complementary resources
 
 UniProt; AlphaFold DB; InterPro
+
+### Supporting citation
+
+wwPDB Consortium. Protein Data Bank: the single global archive for 3D macromolecular structure data. Nucleic Acids Res. 2019;47(D1):D520-D528. doi:10.1093/nar/gky949.
 
 ### Traceability
 
@@ -1371,12 +1635,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** alphafold-db
 - **Class:** database
-- **Analytical function:** Structural and protein-function evidence
-- **Workflow stage(s):** 7;9
+- **Analytical function:** Structural & Protein Function
+- **Workflow position:** 7;8;9
 - **Evidence type:** Structural/functional
-- **Genome build:** build independent;protein or transcript mapping
+- **Genome-build and transcript compatibility:** build independent;protein or transcript mapping
 - **Maintenance:** Active
 - **Official resource:** https://alphafold.ebi.ac.uk/
+
+### Analytical purpose
+
+Assessment of protein structure and function
 
 ### Selection rationale
 
@@ -1398,11 +1666,15 @@ Output: Predicted structures and confidence measures
 
 ### Key limitations
 
-Prediction confidence, conformational dynamics, complexes, and mapping limitations.
+Structural prediction and functional uncertainty. Prediction confidence, conformational dynamics, complexes, and mapping limitations.
 
 ### Complementary resources
 
 PDB; UniProt; InterPro
+
+### Supporting citation
+
+Varadi M, Anyango S, Deshpande M, Nair S, Natassia C, Yordanova G, et al. AlphaFold Protein Structure Database: massively expanding the structural coverage of protein-sequence space with high-accuracy models. Nucleic Acids Res. 2022;50(D1):D439-D444. doi:10.1093/nar/gkab1061.
 
 ### Traceability
 
@@ -1412,12 +1684,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** interpro
 - **Class:** database
-- **Analytical function:** Structural and protein-function evidence
-- **Workflow stage(s):** 7;9
+- **Analytical function:** Structural & Protein Function
+- **Workflow position:** 7;8;9
 - **Evidence type:** Structural/functional
-- **Genome build:** build independent;protein or transcript mapping
+- **Genome-build and transcript compatibility:** build independent;protein or transcript mapping
 - **Maintenance:** Active
 - **Official resource:** https://www.ebi.ac.uk/interpro/
+
+### Analytical purpose
+
+Assessment of protein structure and function
 
 ### Selection rationale
 
@@ -1439,52 +1715,15 @@ Output: Domain/family/function annotations
 
 ### Key limitations
 
-Annotation coverage and functional specificity vary.
+Structural prediction and functional uncertainty. Annotation coverage and functional specificity vary.
 
 ### Complementary resources
 
 UniProt; PDB; AlphaFold DB
 
-### Traceability
+### Supporting citation
 
-No release identifier was captured when this entry was reviewed on 2026-10-10. Check the current release again when the resource is used.
-
-## MSeqDR-QM
-
-- **Identifier:** mseqdr-qm
-- **Class:** tool
-- **Analytical function:** Computational and AI-assisted prioritization
-- **Workflow stage(s):** 5
-- **Evidence type:** Computational/AI
-- **Genome build:** build dependent
-- **Maintenance:** Active/verify current status
-- **Official resource:** https://mseqdr.org/
-
-### Selection rationale
-
-Included because MSeqDR provides mitochondrial-disease phenotype, gene, and variant context when that disease group is part of the clinical question.
-
-### Appropriate use
-
-Use for prioritization when the differential includes mitochondrial disease, and review the underlying sources returned by the query.
-
-### Interpretation boundary
-
-A mitochondrial-disease query result does not establish causality and is not a classification.
-
-### Inputs and outputs
-
-Input: Phenotype, gene, and variant queries related to mitochondrial disease
-
-Output: Mitochondrial-disease knowledge retrieval and prioritization context
-
-### Key limitations
-
-Scope is mitochondrial disease rather than general Mendelian interpretation. Coverage, update timing, and dependence on upstream databases have to be reviewed.
-
-### Complementary resources
-
-HPO; ClinGen; ClinVar; Exomiser
+Paysan-Lafosse T, Blum M, Chuguransky S, Grego T, Pinto BL, Salazar GA, et al. InterPro in 2022. Nucleic Acids Res. 2023;51(D1):D418-D427. doi:10.1093/nar/gkac993.
 
 ### Traceability
 
@@ -1494,16 +1733,20 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** gemstone
 - **Class:** tool
-- **Analytical function:** Computational and AI-assisted prioritization
-- **Workflow stage(s):** 5;9
+- **Analytical function:** Computational & AI
+- **Workflow position:** 5;6;7;8;9
 - **Evidence type:** Computational/AI
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active/verify current status
 - **Official resource:** http://gemstone.yulab.org/
 
+### Analytical purpose
+
+Computational support for variant and gene prioritization
+
 ### Selection rationale
 
-Included as a representative cloud workflow that can filter and prioritize germline variants from a VCF using a saved recipe. Component databases and predictors still have to be appraised on their own.
+Included as a representative cloud workflow that can filter and prioritize germline variants from a VCF using a saved recipe. Use across stages 5–9 is context dependent. Component databases and predictors still have to be appraised on their own.
 
 ### Appropriate use
 
@@ -1521,11 +1764,15 @@ Output: Prioritized candidate variants/genes
 
 ### Key limitations
 
-Results depend on the selected filters, predictor thresholds, and embedded data releases. Concordance among embedded predictors is not independent evidence.
+Bias, interpretability, model dependence, and variable validation. Results depend on the selected filters, predictor thresholds, and embedded data releases. Concordance among embedded predictors is not independent evidence.
 
 ### Complementary resources
 
-Exomiser; MSeqDR-QM; ClinGen
+Exomiser; ClinGen
+
+### Supporting citation
+
+Chen S, Francioli LC, Goodrich JK, Collins RL, Kanai M, Wang Q, et al. GeMSTONE: orchestrated prioritization of human germline mutations in the cloud. Nucleic Acids Res. 2017;45(W1):W207-W214. doi:10.1093/nar/gkx398.
 
 ### Traceability
 
@@ -1535,12 +1782,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** clinvar
 - **Class:** database
-- **Analytical function:** Clinical evidence retrieval and curation;Reporting, documentation, and reinterpretation
-- **Workflow stage(s):** 9;11
+- **Analytical function:** Clinical Evidence & Curation;Reporting & Reinterpretation
+- **Workflow position:** 9;11
 - **Evidence type:** Clinical/literature
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://www.ncbi.nlm.nih.gov/clinvar/
+
+### Analytical purpose
+
+Retrieval and assessment of clinical and literature-based evidence; Clinical reporting, documentation, and reassessment
 
 ### Selection rationale
 
@@ -1562,11 +1813,15 @@ Output: Clinical significance submissions, review status, conflicts
 
 ### Key limitations
 
-Conflicting submissions, variable review status, curation lag, and heterogeneous evidence.
+Conflicting, heterogeneous, or incompletely curated evidence. Evidence and interpretations may change over time.
 
 ### Complementary resources
 
 ClinGen; PubMed; Mastermind; HGMD
+
+### Supporting citation
+
+Landrum MJ, Lee JM, Benson M, Brown G, Chao C, Chitipiralla S, et al. ClinVar: improving access to variant interpretations and supporting evidence. Nucleic Acids Res. 2018;46(D1):D1062-D1067. doi:10.1093/nar/gkx1153.
 
 ### Traceability
 
@@ -1576,12 +1831,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** hgmd
 - **Class:** database
-- **Analytical function:** Clinical evidence retrieval and curation
-- **Workflow stage(s):** 9
+- **Analytical function:** Clinical Evidence & Curation
+- **Workflow position:** 9
 - **Evidence type:** Clinical/literature
-- **Genome build:** build dependent
+- **Genome-build and transcript compatibility:** build dependent
 - **Maintenance:** Active/subscription
 - **Official resource:** https://www.hgmd.cf.ac.uk/
+
+### Analytical purpose
+
+Retrieval and assessment of clinical and literature-based evidence
 
 ### Selection rationale
 
@@ -1603,11 +1862,15 @@ Output: Reported disease-associated variant records
 
 ### Key limitations
 
-Subscription access, curation criteria, and need for primary-source appraisal.
+Conflicting, heterogeneous, or incompletely curated evidence. Subscription access, curation criteria, and need for primary-source appraisal.
 
 ### Complementary resources
 
 ClinVar; PubMed; Mastermind
+
+### Supporting citation
+
+Stenson PD, Mort M, Ball EV, Chapman M, Evans K, Azevedo L, et al. The Human Gene Mutation Database (HGMD): optimizing its use in a clinical diagnostic or research setting. Hum Genet. 2020;139(10):1197-1207. doi:10.1007/s00439-020-02199-3.
 
 ### Traceability
 
@@ -1617,12 +1880,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** mastermind
 - **Class:** database
-- **Analytical function:** Clinical evidence retrieval and curation
-- **Workflow stage(s):** 9
+- **Analytical function:** Clinical Evidence & Curation
+- **Workflow position:** 9
 - **Evidence type:** Clinical/literature
-- **Genome build:** build dependent
+- **Genome-build and transcript compatibility:** build dependent
 - **Maintenance:** Active/subscription tiered
 - **Official resource:** https://mastermind.genomenon.com/
+
+### Analytical purpose
+
+Retrieval and assessment of clinical and literature-based evidence
 
 ### Selection rationale
 
@@ -1644,11 +1911,15 @@ Output: Literature links and indexed evidence context
 
 ### Key limitations
 
-Indexing scope, access tier, normalization, and literature quality vary.
+Conflicting, heterogeneous, or incompletely curated evidence. Indexing scope, access tier, normalization, and literature quality vary.
 
 ### Complementary resources
 
 PubMed; ClinVar; ClinGen
+
+### Supporting citation
+
+Chunn LM, Nefcy DC, Scouten RW, Tarpey RP, Chauhan G, Lim MS, et al. Mastermind: a comprehensive genomic association search engine for empirical evidence curation and genetic variant interpretation. Front Genet. 2020;11:577152. doi:10.3389/fgene.2020.577152.
 
 ### Traceability
 
@@ -1658,12 +1929,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** pubmed
 - **Class:** database
-- **Analytical function:** Clinical evidence retrieval and curation
-- **Workflow stage(s):** 9
+- **Analytical function:** Clinical Evidence & Curation
+- **Workflow position:** 9
 - **Evidence type:** Clinical/literature
-- **Genome build:** build independent
+- **Genome-build and transcript compatibility:** build independent
 - **Maintenance:** Active
 - **Official resource:** https://pubmed.ncbi.nlm.nih.gov/
+
+### Analytical purpose
+
+Retrieval and assessment of clinical and literature-based evidence
 
 ### Selection rationale
 
@@ -1685,71 +1960,34 @@ Output: Bibliographic records and links to literature
 
 ### Key limitations
 
-Indexing, query design, publication bias, and access limitations.
+Conflicting, heterogeneous, or incompletely curated evidence. Indexing, query design, publication bias, and access limitations.
 
 ### Complementary resources
 
 Mastermind; ClinVar; ClinGen
 
+### Supporting citation
+
+Sayers EW, Cavanaugh M, Clark K, Pruitt KD, Schoch CL, Sherry ST, et al. Database resources of the National Center for Biotechnology Information in 2025. Nucleic Acids Res. 2025;53(D1):D20-D29. doi:10.1093/nar/gkae979.
+
 ### Traceability
 
 No release identifier was captured when this entry was reviewed on 2026-10-10. Check the current release again when the resource is used.
-
-## ACMG/AMP guidelines
-
-- **Identifier:** acmg-amp-guidelines
-- **Class:** guideline
-- **Analytical function:** ACMG/AMP-based variant classification
-- **Workflow stage(s):** 10
-- **Evidence type:** Integrated clinical evidence
-- **Genome build:** build independent
-- **Maintenance:** Active
-- **Official resource:** https://pmc.ncbi.nlm.nih.gov/articles/PMC4544753/
-
-### Selection rationale
-
-Included because formal clinical classification should follow the 2015 ACMG/AMP joint consensus recommendation. Applicable ClinGen specifications are catalogued as a separate entry.
-
-### Appropriate use
-
-Use after evidence selection and appraisal within defined gene–disease/inheritance context.
-
-### Interpretation boundary
-
-Criteria do not replace evidence quality review, clinical context, or expert judgment.
-
-### Inputs and outputs
-
-Input: Variant evidence and gene/disease context
-
-Output: Pathogenicity classification framework
-
-### Key limitations
-
-General framework requires contextual and gene/disease-specific application.
-
-### Complementary resources
-
-ClinGen; VarSome
-
-### Complementary context
-
-laboratory SOPs
-
-### Traceability
-
-Release reviewed on 2026-10-10: Richards et al. 2015. The release cited here is fixed.
 
 ## ClinGen specifications
 
 - **Identifier:** clingen-specifications
 - **Class:** guideline
-- **Analytical function:** ACMG/AMP-based variant classification
-- **Workflow stage(s):** 10
+- **Analytical function:** ACMG/AMP Classification
+- **Workflow position:** 10
 - **Evidence type:** Integrated clinical evidence
-- **Genome build:** build independent
+- **Genome-build and transcript compatibility:** build independent
 - **Maintenance:** Active
-- **Official resource:** https://clinicalgenome.org/working-groups/sequence-variant-interpretation/
+- **Official resource:** https://cspec.genome.network/cspec/ui/svi/about
+
+### Analytical purpose
+
+Clinical variant classification using ACMG/AMP criteria
 
 ### Selection rationale
 
@@ -1771,26 +2009,34 @@ Output: Context-specific evidence specifications
 
 ### Key limitations
 
-Coverage is incomplete; applicability and version must be checked.
+Requires contextual assessment and expert review. Coverage is incomplete; applicability and version must be checked.
 
 ### Complementary resources
 
-ACMG/AMP guidelines; ClinGen
+ClinGen
+
+### Supporting citation
+
+ClinGen Sequence Variant Interpretation Working Group; ClinGen Variant Curation Expert Panels. ClinGen Criteria Specification Registry: ACMG/AMP variant-classification criteria specifications [Internet]. ClinGen; [cited 2026 Oct 13]. Available from: https://cspec.genome.network/cspec/ui/svi/about.
 
 ### Traceability
 
-No release identifier was captured when this entry was reviewed on 2026-10-10. Check the current release again when the resource is used.
+No release identifier was captured when this entry was reviewed on 2026-10-13. Check the current release again when the resource is used.
 
 ## InterVar
 
 - **Identifier:** intervar
 - **Class:** tool
-- **Analytical function:** ACMG/AMP-based variant classification
-- **Workflow stage(s):** 10
+- **Analytical function:** ACMG/AMP Classification
+- **Workflow position:** 10
 - **Evidence type:** Integrated clinical evidence
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active/verify current status
 - **Official resource:** https://github.com/WGLab/InterVar
+
+### Analytical purpose
+
+Clinical variant classification using ACMG/AMP criteria
 
 ### Selection rationale
 
@@ -1812,11 +2058,15 @@ Output: Automated or semi-automated criteria suggestions
 
 ### Key limitations
 
-Rule implementation, versioning, and context-specific criteria limitations.
+Requires contextual assessment and expert review. Rule implementation, versioning, and context-specific criteria limitations.
 
 ### Complementary resources
 
 VarSome; Franklin; ClinGen specifications
+
+### Supporting citation
+
+Li Q, Wang K. InterVar: clinical interpretation of genetic variants by the 2015 ACMG-AMP guidelines. Am J Hum Genet. 2017;100(2):267-280. doi:10.1016/j.ajhg.2017.01.004.
 
 ### Traceability
 
@@ -1826,12 +2076,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** varsome
 - **Class:** tool
-- **Analytical function:** ACMG/AMP-based variant classification
-- **Workflow stage(s):** 10
+- **Analytical function:** ACMG/AMP Classification
+- **Workflow position:** 10
 - **Evidence type:** Integrated clinical evidence
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
 - **Official resource:** https://varsome.com/
+
+### Analytical purpose
+
+Clinical variant classification using ACMG/AMP criteria
 
 ### Selection rationale
 
@@ -1853,11 +2107,15 @@ Output: Aggregated annotations and classification support
 
 ### Key limitations
 
-Underlying data updates, rule implementation, and source dependence.
+Requires contextual assessment and expert review. Underlying data updates, rule implementation, and source dependence.
 
 ### Complementary resources
 
 InterVar; Franklin; ClinGen specifications
+
+### Supporting citation
+
+Kopanos C, Tsiolkas V, Kouris A, Chapple CE, Albarca Aguilera M, Meyer R, et al. VarSome: the human genomic variant search engine. Bioinformatics. 2019;35(11):1978-1980. doi:10.1093/bioinformatics/bty897.
 
 ### Traceability
 
@@ -1867,12 +2125,16 @@ No release identifier was captured when this entry was reviewed on 2026-10-10. C
 
 - **Identifier:** franklin
 - **Class:** tool
-- **Analytical function:** ACMG/AMP-based variant classification
-- **Workflow stage(s):** 10
+- **Analytical function:** ACMG/AMP Classification
+- **Workflow position:** 10
 - **Evidence type:** Integrated clinical evidence
-- **Genome build:** GRCh37;GRCh38
+- **Genome-build and transcript compatibility:** GRCh37;GRCh38
 - **Maintenance:** Active
-- **Official resource:** https://franklin.genoox.com/
+- **Official resource:** https://franklin.genoox.com/clinical-db/home
+
+### Analytical purpose
+
+Clinical variant classification using ACMG/AMP criteria
 
 ### Selection rationale
 
@@ -1894,26 +2156,34 @@ Output: Classification-support outputs and evidence context
 
 ### Key limitations
 
-Evidence aggregation, versioning, and implementation differences.
+Requires contextual assessment and expert review. Evidence aggregation, versioning, and implementation differences.
 
 ### Complementary resources
 
 InterVar; VarSome; ClinGen specifications
 
+### Supporting citation
+
+Franklin by Genoox. Franklin Clinical Database and variant classification platform [Internet]. Genoox; [cited 2026 Oct 13]. Available from: https://franklin.genoox.com/clinical-db/home.
+
 ### Traceability
 
-No release identifier was captured when this entry was reviewed on 2026-10-10. Check the current release again when the resource is used.
+No release identifier was captured when this entry was reviewed on 2026-10-13. Check the current release again when the resource is used.
 
 ## ACMG NGS technical standard
 
 - **Identifier:** reporting-standards
 - **Class:** guideline
-- **Analytical function:** Reporting, documentation, and reinterpretation
-- **Workflow stage(s):** 11
+- **Analytical function:** Reporting & Reinterpretation
+- **Workflow position:** 11
 - **Evidence type:** Clinical/reporting
-- **Genome build:** build independent
+- **Genome-build and transcript compatibility:** build independent
 - **Maintenance:** Context dependent
 - **Official resource:** https://www.nature.com/articles/s41436-021-01139-4
+
+### Analytical purpose
+
+Clinical reporting, documentation, and reassessment
 
 ### Selection rationale
 
@@ -1935,16 +2205,179 @@ Output: Traceable report and reassessment documentation
 
 ### Key limitations
 
-This entry cites the 2021 revision. Later ACMG documents, CAP or ISO requirements, and laboratory procedures may also apply.
+Evidence and interpretations may change over time. This entry cites the 2021 revision. Later ACMG documents, CAP or ISO requirements, and laboratory procedures may also apply.
 
 ### Complementary resources
 
-ClinVar; ClinGen
+ClinVar; ClinGen; ACMG reanalysis points to consider
 
 ### Complementary context
 
 laboratory SOPs
 
+### Supporting citation
+
+Rehm HL, Bick D, Chao E, Chung WK, Das S, Dimmock D, et al. Next-generation sequencing for constitutional variants in the clinical laboratory, 2021 revision: a technical standard of the American College of Medical Genetics and Genomics (ACMG). Genet Med. 2021;23(8):1399-1415. doi:10.1038/s41436-021-01139-4.
+
 ### Traceability
 
 Release reviewed on 2026-10-10: 2021 revision. Check the current release again when the resource is used.
+
+## ACMG reanalysis points to consider
+
+- **Identifier:** reanalysis-guidance
+- **Class:** guideline
+- **Analytical function:** Reporting & Reinterpretation
+- **Workflow position:** 11
+- **Evidence type:** Clinical/reporting
+- **Genome-build and transcript compatibility:** build independent
+- **Maintenance:** Context dependent
+- **Official resource:** https://www.nature.com/articles/s41436-019-0478-1
+
+### Analytical purpose
+
+Clinical reporting, documentation, and reassessment
+
+### Selection rationale
+
+Included as the ACMG points to consider in the reevaluation and reanalysis of genomic test results, cited with the 2021 technical standard as reporting and reanalysis guidance.
+
+### Appropriate use
+
+Use when documenting why a previous interpretation is being reevaluated or reanalyzed, including which resources and versions informed the earlier assessment.
+
+### Interpretation boundary
+
+The statement does not assign ACMG/AMP criteria to a variant and does not replace laboratory procedure.
+
+### Inputs and outputs
+
+Input: Prior genomic test results, classifications, and the evidence used to reach them
+
+Output: Points to consider for reevaluation and reanalysis
+
+### Key limitations
+
+Evidence and interpretations may change over time.
+
+### Complementary resources
+
+ACMG NGS technical standard; ClinVar; ClinGen
+
+### Complementary context
+
+laboratory SOPs
+
+### Supporting citation
+
+Deignan JL, Chung WK, Kearney HM, Monaghan KG, Rehder CW, Chao EC, et al. Points to consider in the reevaluation and reanalysis of genomic test results: a statement of the American College of Medical Genetics and Genomics (ACMG). Genet Med. 2019;21(6):1267-1270. doi:10.1038/s41436-019-0478-1.
+
+### Traceability
+
+Release reviewed on 2026-10-13: Deignan et al. 2019. The release cited here is fixed.
+
+## Retired entries
+
+These entries are retained for traceability. They are not representative resources in the current workflow mapping.
+
+### MSeqDR-QM
+
+- **Identifier:** mseqdr-qm
+- **Class:** tool
+- **Analytical function:** Computational & AI
+- **Workflow position:** 5
+- **Evidence type:** Computational/AI
+- **Genome-build and transcript compatibility:** build dependent
+- **Maintenance:** Active/verify current status
+- **Official resource:** https://mseqdr.org/
+
+### Analytical purpose
+
+Computational support for variant and gene prioritization
+
+### Selection rationale
+
+Retired from the core representative set. MSeqDR-QM is not listed among the representative resources in Table 1. Mitochondrial variants are outside the scope of the framework.
+
+### Appropriate use
+
+Not used in the current representative mapping. Retained so an earlier citation of this entry can be traced.
+
+### Interpretation boundary
+
+A mitochondrial-disease query result does not establish causality and is not a classification.
+
+### Inputs and outputs
+
+Input: Phenotype, gene, and variant queries related to mitochondrial disease
+
+Output: Mitochondrial-disease knowledge retrieval and prioritization context
+
+### Key limitations
+
+Bias, interpretability, model dependence, and variable validation. Mitochondrial variants are outside the scope of the framework.
+
+### Complementary resources
+
+HPO; ClinGen; ClinVar; Exomiser
+
+### Supporting citation
+
+Not cited among the representative resources in the manuscript. Mitochondrial variants are outside the framework scope.
+
+### Traceability
+
+No release identifier was captured when this entry was reviewed on 2026-10-10. Check the current release again when the resource is used.
+
+### ACMG/AMP guidelines
+
+- **Identifier:** acmg-amp-guidelines
+- **Class:** guideline
+- **Analytical function:** ACMG/AMP Classification
+- **Workflow position:** 10
+- **Evidence type:** Integrated clinical evidence
+- **Genome-build and transcript compatibility:** build independent
+- **Maintenance:** Active
+- **Official resource:** https://pmc.ncbi.nlm.nih.gov/articles/PMC4544753/
+
+### Analytical purpose
+
+Clinical variant classification using ACMG/AMP criteria
+
+### Selection rationale
+
+Retired from the core representative set. Table 1 lists InterVar, VarSome, Franklin, and ClinGen specifications for ACMG/AMP classification. Richards et al. 2015 remains the classification standard cited by the framework.
+
+### Appropriate use
+
+Not a selected resource in the ACMG/AMP classification row. The criteria remain the standard applied at clinical variant classification.
+
+### Interpretation boundary
+
+Criteria do not replace evidence quality review, clinical context, or expert judgment.
+
+### Inputs and outputs
+
+Input: Variant evidence and gene/disease context
+
+Output: Pathogenicity classification framework
+
+### Key limitations
+
+Requires contextual assessment and expert review.
+
+### Complementary resources
+
+ClinGen specifications; InterVar; VarSome; Franklin
+
+### Complementary context
+
+laboratory SOPs
+
+### Supporting citation
+
+Richards S, Aziz N, Bale S, Bick D, Das S, Gastier-Foster J, et al. Standards and guidelines for the interpretation and reporting of sequence variants: a joint consensus recommendation of the American College of Medical Genetics and Genomics and the Association for Molecular Pathology. Genet Med. 2015;17(5):405-424. doi:10.1038/gim.2015.30.
+
+### Traceability
+
+Release reviewed on 2026-10-10: Richards et al. 2015. The release cited here is fixed.

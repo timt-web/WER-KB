@@ -21,7 +21,7 @@ def _minimal_row(**overrides):
             "resource_id": "example-tool",
             "resource_name": "Example tool",
             "resource_class": "tool",
-            "analytical_function": "Variant-level quality control and filtering",
+            "analytical_function": "Variant-Level Quality Control & Filtering",
             "workflow_stages": "1",
             "evidence_type": "Technical",
             "genome_build_compatibility": "GRCh38",
@@ -54,6 +54,17 @@ class RowValidationTests(unittest.TestCase):
         row = _minimal_row(evidence_type="Phenotypic/computational score")
         errors = validate_catalog.row_errors(2, row, {"example-tool"})
         self.assertTrue(any("evidence_type" in error for error in errors))
+
+    def test_retired_resources_are_omitted_from_stage_lists(self):
+        rows = [
+            _minimal_row(),
+            _minimal_row(
+                resource_id="old-tool",
+                resource_name="Old tool",
+                status="retired",
+            ),
+        ]
+        self.assertEqual(catalog_lib.resources_for_stage(rows, "1"), ["Example tool"])
 
 
 class FixtureTests(unittest.TestCase):

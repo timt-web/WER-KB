@@ -27,6 +27,7 @@
       "complementary_resources",
       "complementary_context",
       "official_url",
+      "supporting_citation",
       "version_or_release",
       "reverify_at_use",
       "access_date",
@@ -57,7 +58,7 @@
       "analytical_function": {
         "type": "string",
         "minLength": 1,
-        "description": "Semicolon-separated functions from the 13 framework domains."
+        "description": "Semicolon-separated analytical functions using the Table 1 names."
       },
       "workflow_stages": {
         "type": "string",
@@ -118,6 +119,11 @@
       "official_url": {
         "type": "string",
         "pattern": "^https?://\\S+$"
+      },
+      "supporting_citation": {
+        "type": "string",
+        "minLength": 1,
+        "description": "Supporting publication or official documentation cited for this resource in the manuscript."
       },
       "version_or_release": {
         "type": "string",

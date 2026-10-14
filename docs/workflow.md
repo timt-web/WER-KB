@@ -1,16 +1,16 @@
 # Post-analytical workflow
 
-Once a germline single-nucleotide variant or small indel has been called from a clinical exome or genome, the catalog follows the work in 11 stages. For each stage we give the question, the limit of what that result can decide, and the resources that address the question.
+The framework organizes post-analytical interpretation and prioritization of germline single-nucleotide variants and small insertions/deletions identified through clinical WES/WGS. The 11 stages are the operational structure for the 13 analytical functions. For each stage, the analytical question, the key limitations, and the representative resources are recorded.
 
-Listing a resource under a stage means it is a reasonable option for that question. It does not mean every laboratory must run it. Evidence type is shown so that a quality metric, an allele count, a prediction score, and a curated assertion stay distinct.
+Resources are representative as opposed to mandatory. A resource may be selected, revisited, omitted, or replaced according to the variant, the disease mechanism, the phenotype, the inheritance model, and the evidence already available. Evidence type is shown so that a technical metric, a population frequency, a computational score, and a curated assertion stay distinct.
 
-If two resources in the same stage can share assays, training data, annotations, or papers, that overlap is noted there. Concordant results from those resources are not independent evidence.
+Where resources may share datasets, annotations, publications, training data, or modelling assumptions, that dependence is noted. Agreement among those resources is not independent evidence.
 
-## 1. Variant-level quality review
+## 1. Variant quality assessment and filtering
 
-**Question.** Are the post-calling quality metrics and the call itself plausible for interpretation?
+**Analytical question.** Is the variant call of sufficient quality for post-analytical interpretation?
 
-**Limit.** Technical outputs are pipeline and parameter dependent.
+**Key limitations.** Pipeline- and parameter-dependent.
 
 ### Resources
 
@@ -20,11 +20,11 @@ If two resources in the same stage can share assays, training data, annotations,
 - **bcftools** (`bcftools`). Does not establish variant validity or pathogenicity.
 - **VCFtools** (`vcftools`). Does not replace validation of calls or clinical evidence appraisal.
 
-## 2. Variant-level filtering
+## 2. Variant quality assessment and filtering
 
-**Question.** Which variants remain after documented, case-appropriate filters and normalization?
+**Analytical question.** Which variants remain after documented filtering?
 
-**Limit.** Filtering does not establish pathogenicity.
+**Key limitations.** Pipeline- and parameter-dependent. Filtering does not establish pathogenicity.
 
 ### Resources
 
@@ -36,9 +36,9 @@ If two resources in the same stage can share assays, training data, annotations,
 
 ## 3. Genome and transcript annotation
 
-**Question.** Which genome build, gene, transcript, and molecular consequence apply to this variant?
+**Analytical question.** Which genome build, gene, transcript, and molecular consequence apply to this variant?
 
-**Limit.** Transcript selection and release differences can alter interpretation.
+**Key limitations.** Transcript and genome-build discrepancies.
 
 ### Resources
 
@@ -55,9 +55,9 @@ If two resources in the same stage can share assays, training data, annotations,
 
 ## 4. Population-frequency assessment
 
-**Question.** Is the observed allele frequency compatible with the proposed disease model and ancestry context?
+**Analytical question.** Is the population frequency compatible with the disease model and the ancestry of the individual?
 
-**Limit.** Rarity alone does not establish pathogenicity.
+**Key limitations.** Population representation and ancestry bias; rarity alone does not establish pathogenicity.
 
 ### Resources
 
@@ -74,32 +74,28 @@ If two resources in the same stage can share assays, training data, annotations,
 
 ## 5. Phenotype- and gene-based prioritization
 
-**Question.** Which genes or variants rank highest given the structured phenotype and the inheritance context?
+**Analytical question.** Which genes or variants show phenotype–gene matching for the recorded phenotype and the mode of inheritance?
 
-**Limit.** Prioritization is not proof of causality.
+**Key limitations.** Incomplete, nonspecific, or inaccurately captured phenotypes. Phenotypic concordance does not establish causality.
 
 ### Resources
 
-#### Phenotypic
-
-- **HPO** (`hpo`). Phenotype similarity does not independently establish gene–disease causality or variant pathogenicity.
-
 #### Phenotypic/computational
 
+- **HPO** (`hpo`). HPO is phenotype encoding. Phenotype similarity does not independently establish gene–disease causality or variant pathogenicity.
 - **Exomiser** (`exomiser`). Ranking is not proof of causality or classification.
 - **LIRICAL** (`lirical`). Output does not independently prove causal variant status.
 - **Phen2Gene** (`phen2gene`). Does not provide variant classification.
 
 #### Computational/AI
 
-- **MSeqDR-QM** (`mseqdr-qm`). A mitochondrial-disease query result does not establish causality and is not a classification.
 - **GeMSTONE** (`gemstone`). A prioritized list does not establish gene–disease validity, a splice effect, or a clinical classification.
 
-## 6. Gene–disease association assessment
+## 6. Gene–disease evaluation
 
-**Question.** How strong is the gene–disease relationship for this clinical question?
+**Analytical question.** What is the gene–disease validity and clinical relevance for this indication?
 
-**Limit.** Curation coverage and strength vary.
+**Key limitations.** Evidence is evolving and may vary in strength and curation status.
 
 ### Resources
 
@@ -110,11 +106,15 @@ If two resources in the same stage can share assays, training data, annotations,
 - **Orphanet** (`orphanet`). Does not independently establish causality in an individual case.
 - **PanelApp** (`panelapp`). Panel inclusion is not synonymous with definitive causality or variant pathogenicity.
 
-## 7. Computational variant-effect assessment
+#### Computational/AI
 
-**Question.** Which computational, regulatory, or protein-level observations apply to this variant class?
+- **GeMSTONE** (`gemstone`). A prioritized list does not establish gene–disease validity, a splice effect, or a clinical classification.
 
-**Limit.** Predictions and annotations are supportive, not autonomous clinical evidence.
+## 7. Functional and computational assessment
+
+**Analytical question.** Which computational predictions, regulatory and expression observations, or protein-structure and protein-function observations apply to this variant?
+
+**Key limitations.** Model-dependent performance and applicability across variant types and populations. Tissue specificity and incomplete functional annotation. Structural prediction and functional uncertainty. Computational outputs are supportive rather than standalone determinants of clinical classification.
 
 ### Resources
 
@@ -125,6 +125,10 @@ If two resources in the same stage can share assays, training data, annotations,
 - **SIFT** (`sift`). Not a stand-alone clinical classification method.
 - **PolyPhen-2** (`polyphen-2`). Not independent confirmation when used with overlapping predictors.
 - **AlphaMissense** (`alphamissense`). Do not use as autonomous clinical classification evidence.
+
+#### Computational/AI
+
+- **GeMSTONE** (`gemstone`). A prioritized list does not establish gene–disease validity, a splice effect, or a clinical classification.
 
 #### Regulatory/functional
 
@@ -148,9 +152,9 @@ If two resources in the same stage can share assays, training data, annotations,
 
 ## 8. Splicing assessment
 
-**Question.** Could this variant alter splicing of a clinically relevant transcript?
+**Analytical question.** Could this variant alter splicing of a clinically relevant transcript?
 
-**Limit.** Predicted splice effects require contextual and, where possible, experimental corroboration.
+**Key limitations.** Tissue, transcript, and context dependence.
 
 ### Resources
 
@@ -160,21 +164,35 @@ If two resources in the same stage can share assays, training data, annotations,
 - **MaxEntScan** (`maxentscan`). Does not demonstrate in vivo splicing outcome.
 - **dbscSNV** (`dbscsnv`). Not direct experimental evidence of aberrant splicing.
 
+#### Computational/AI
+
+- **GeMSTONE** (`gemstone`). A prioritized list does not establish gene–disease validity, a splice effect, or a clinical classification.
+
 #### Regulatory/functional
 
 - **GTEx** (`gtex`). Expression context does not independently establish variant pathogenicity.
 - **ENCODE** (`encode`). Annotation overlap does not prove disease mechanism or clinical impact.
+- **RegulomeDB** (`regulomedb`). Scores are not direct clinical pathogenicity evidence.
+- **FANTOM5** (`fantom5`). Does not by itself establish variant effect or causality.
+
+#### Structural/functional
+
+- **UniProt** (`uniprot`). Protein annotation alone does not determine clinical significance.
+- **PDB** (`pdb`). Structure presence does not prove functional or clinical impact.
+- **AlphaFold DB** (`alphafold-db`). Predicted structure is not direct functional or clinical evidence.
+- **InterPro** (`interpro`). Domain overlap alone does not establish pathogenicity.
 
 ### Shared sources
 
 - **Splicing predictors** (SpliceAI, MaxEntScan, dbscSNV). Models differ in features, training era, and transcript context. Agreement is still computational. Concordant splice scores are not experimental evidence of aberrant splicing.
-- **Regulatory resources** (GTEx, ENCODE). Aggregated annotations can reuse shared assays, datasets, or inferred features. Treat outputs as contextual support, not independent proof.
+- **Regulatory resources** (GTEx, ENCODE, RegulomeDB, FANTOM5). Aggregated annotations can reuse shared assays, datasets, or inferred features. Treat outputs as contextual support, not independent proof.
+- **Structural resources** (UniProt, PDB, AlphaFold DB, InterPro). Protein annotations and models may be based on related sequences, structures, or databases. Check direct source and mapping before inferring function.
 
-## 9. Functional, clinical, and literature evidence integration
+## 9. Evidence integration
 
-**Question.** Which functional, clinical, and literature observations are relevant, and which of them repeat the same underlying data?
+**Analytical question.** Which functional, clinical, and literature-based observations are relevant, and which of them share underlying datasets, annotations, or publications?
 
-**Limit.** A collected set of observations does not establish pathogenicity, and sources that share underlying data do not provide independent confirmation.
+**Key limitations.** Conflicting, heterogeneous, or incompletely curated evidence. Agreement is not independent evidence when resources share datasets, annotations, publications, or modelling assumptions.
 
 ### Resources
 
@@ -213,17 +231,16 @@ If two resources in the same stage can share assays, training data, annotations,
 - **Regulatory resources** (GTEx, ENCODE, RegulomeDB, FANTOM5). Aggregated annotations can reuse shared assays, datasets, or inferred features. Treat outputs as contextual support, not independent proof.
 - **Structural resources** (UniProt, PDB, AlphaFold DB, InterPro). Protein annotations and models may be based on related sequences, structures, or databases. Check direct source and mapping before inferring function.
 
-## 10. ACMG/AMP-based classification
+## 10. Clinical variant classification
 
-**Question.** Which ACMG/AMP criteria and ClinGen specifications apply after the evidence has been appraised?
+**Analytical question.** Which ACMG/AMP criteria and ClinGen specifications apply after the evidence has been appraised?
 
-**Limit.** Automated support tools do not replace contextual expert classification.
+**Key limitations.** Requires contextual assessment and expert review.
 
 ### Resources
 
 #### Integrated clinical evidence
 
-- **ACMG/AMP guidelines** (`acmg-amp-guidelines`). Criteria do not replace evidence quality review, clinical context, or expert judgment.
 - **ClinGen specifications** (`clingen-specifications`). Absence of a specification does not justify overinterpretation.
 - **InterVar** (`intervar`). Automated suggestions are not final clinical classifications.
 - **VarSome** (`varsome`). Platform output is not a substitute for expert clinical review.
@@ -233,13 +250,17 @@ If two resources in the same stage can share assays, training data, annotations,
 
 - **Classification-support tools** (InterVar, VarSome, Franklin). Implementations can share ACMG/AMP rules, population annotations, and submitted assertions. Compare the activated criteria with the underlying evidence rather than treating concordant classifications as confirmation.
 
-## 11. Reporting, documentation, and reinterpretation
+## 11. Reporting and reinterpretation
 
-**Question.** What resources, versions, evidence, decisions, and limitations must the report preserve for later reinterpretation?
+**Analytical question.** What resource identities, versions, evidence, and limitations must be documented for clinical reporting and later reinterpretation?
 
-**Limit.** Evidence and interpretations may change over time.
+**Key limitations.** Evidence and interpretations may change over time.
 
 ### Resources
+
+#### Clinical/curated
+
+- **ClinGen** (`clingen`). Coverage is incomplete. A validity or evidence assertion does not classify the variant under review and does not replace case-specific appraisal.
 
 #### Clinical/literature
 
@@ -248,3 +269,8 @@ If two resources in the same stage can share assays, training data, annotations,
 #### Clinical/reporting
 
 - **ACMG NGS technical standard** (`reporting-standards`). The standard does not assign ACMG/AMP criteria to a variant and does not replace local or jurisdictional reporting rules.
+- **ACMG reanalysis points to consider** (`reanalysis-guidance`). The statement does not assign ACMG/AMP criteria to a variant and does not replace laboratory procedure.
+
+### Shared sources
+
+- **Clinical assertion sources** (ClinVar, ClinGen). Assertions and summaries may trace to the same primary studies or submissions. Trace claims to primary evidence where possible.

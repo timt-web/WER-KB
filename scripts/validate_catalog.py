@@ -10,6 +10,7 @@ from catalog_lib import (
     BUILD_TOKENS,
     CATALOG_STATUSES,
     COLUMNS,
+    LISTED_STATUSES,
     DEPENDENCY_COLUMNS,
     EVIDENCE_TYPES,
     MAINTENANCE_STATUSES,
@@ -188,6 +189,8 @@ def workflow_errors(workflow_numbered, rows):
         errors.append("workflow map must contain stages 1 through 11 exactly once")
 
     for row in rows:
+        if (row.get("status") or "").strip() not in LISTED_STATUSES:
+            continue
         for stage in split_semi(row["workflow_stages"]):
             listed = resources_for_stage(rows, stage)
             if row["resource_name"] not in listed:

@@ -9,6 +9,7 @@
 - **Evidence type:**
 - **Genome build:**
 - **Official URL:**
+- **Supporting citation:**
 - **Version or release:**
 - **Recheck at use:** yes or no
 - **Access date:**
@@ -32,7 +33,7 @@ Describe the case contexts, variant classes, or data conditions in which use may
 
 ### Interpretation boundary
 
-State what the output cannot establish by itself. A population-frequency resource does not independently establish pathogenicity. A predictor does not independently classify a variant.
+State what the output cannot establish by itself. Population frequency does not by itself establish pathogenicity. A computational prediction is not a standalone determinant of clinical classification.
 
 ### Inputs, outputs, and compatibility
 

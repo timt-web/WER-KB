@@ -25,6 +25,7 @@ The catalog is kept in `data/resource_catalog.csv`. The JSON file, the rationale
 | `complementary_resources` | Other catalogued resources that add distinct context | `resource_id` values separated by `;`; may be empty |
 | `complementary_context` | Non-catalogued context that should be considered with the output | concise text; may be empty |
 | `official_url` | Page that identifies this resource | absolute `http` or `https` URL |
+| `supporting_citation` | Supporting publication or official documentation | citation recorded in the manuscript; required |
 | `version_or_release` | Release checked for this catalog entry | a release, a dated document, or `not recorded` |
 | `reverify_at_use` | Whether the release must be checked again at the point of use | `yes`; `no` |
 | `access_date` | Date the entry was checked | ISO 8601 date |
@@ -36,19 +37,21 @@ The catalog is kept in `data/resource_catalog.csv`. The JSON file, the rationale
 
 ## Analytical functions
 
-1. Variant-level quality control and filtering
-2. Genome and transcript annotation
-3. Population-frequency assessment
-4. Phenotype encoding and phenotype-driven gene prioritization
-5. Gene–disease association assessment
-6. Computational variant-effect prediction
-7. Splicing assessment
-8. Regulatory and expression evidence
-9. Structural and protein-function evidence
-10. Computational and AI-assisted prioritization
-11. Clinical evidence retrieval and curation
-12. ACMG/AMP-based variant classification
-13. Reporting, documentation, and reinterpretation
+Names follow Table 1.
+
+1. Variant-Level Quality Control & Filtering
+2. Genome & Transcript Annotation
+3. Population & Frequency
+4. Phenotype & Gene Prioritization
+5. Gene–Disease Association
+6. Computational Variant-Effect Prediction
+7. Splicing Assessment
+8. Regulatory & Expression
+9. Structural & Protein Function
+10. Computational & AI
+11. Clinical Evidence & Curation
+12. ACMG/AMP Classification
+13. Reporting & Reinterpretation
 
 ## Evidence types
 
@@ -67,7 +70,7 @@ The catalog is kept in `data/resource_catalog.csv`. The JSON file, the rationale
 - Integrated clinical evidence
 - Clinical/reporting
 
-Phenotypic/computational, transcript-based, and AI-assisted outputs are still computational inferences. They are distinguished so a phenotype rank, a splice score, and a curated assertion are not stored as the same kind of evidence.
+Phenotypic/computational, transcript-based, and AI-assisted outputs are computational inferences. They are distinguished so that phenotype–gene matching, a splice score, and a curated assertion are not stored as the same kind of evidence. Table 1 assigns Phenotypic/computational to the Phenotype & Gene Prioritization row, including phenotype encoding with HPO. `Phenotypic` remains available when an entry needs to record curated phenotype encoding separately from computational inference.
 
 ## Genome-build tokens
 
@@ -96,10 +99,10 @@ Put release-specific or partial-support detail in `technical_compatibility`.
 ## Curation rules
 
 - Preserve the distinction between observed, curated, or experimental evidence and computational inference.
-- Assign a workflow stage only when the resource addresses that stage's scientific question.
-- Record genome build and transcript context wherever they can affect outputs.
-- Do not label a tool as required for all cases.
-- Do not present predictors, database assertions, or integrated platforms as autonomous clinical classifiers.
+- Assign a workflow stage only when the resource addresses that stage's analytical question.
+- Record genome-build and transcript compatibility wherever they can affect outputs.
+- Resources are representative as opposed to mandatory.
+- Do not present resource outputs as autonomous clinical categorizations.
 - Record known overlap or dependence in `data/resource_dependencies.csv` when relevant.
 - Use `candidate` for an entry awaiting appraisal and `retired` for an entry retained only for historical traceability.
 - Keep `complementary_resources` inside the catalog. Put laboratory procedures, RNA studies, and other non-catalogued context in `complementary_context`.

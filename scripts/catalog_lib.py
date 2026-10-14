@@ -28,6 +28,7 @@ COLUMNS = [
     "complementary_resources",
     "complementary_context",
     "official_url",
+    "supporting_citation",
     "version_or_release",
     "reverify_at_use",
     "access_date",
@@ -60,20 +61,25 @@ RESOURCE_CLASSES = [
 ]
 
 ANALYTICAL_FUNCTIONS = [
-    "Variant-level quality control and filtering",
-    "Genome and transcript annotation",
-    "Population-frequency assessment",
-    "Phenotype encoding and phenotype-driven gene prioritization",
-    "Gene–disease association assessment",
-    "Computational variant-effect prediction",
-    "Splicing assessment",
-    "Regulatory and expression evidence",
-    "Structural and protein-function evidence",
-    "Computational and AI-assisted prioritization",
-    "Clinical evidence retrieval and curation",
-    "ACMG/AMP-based variant classification",
-    "Reporting, documentation, and reinterpretation",
+    "Variant-Level Quality Control & Filtering",
+    "Genome & Transcript Annotation",
+    "Population & Frequency",
+    "Phenotype & Gene Prioritization",
+    "Gene–Disease Association",
+    "Computational Variant-Effect Prediction",
+    "Splicing Assessment",
+    "Regulatory & Expression",
+    "Structural & Protein Function",
+    "Computational & AI",
+    "Clinical Evidence & Curation",
+    "ACMG/AMP Classification",
+    "Reporting & Reinterpretation",
 ]
+
+LISTED_STATUSES = (
+    "core representative resource",
+    "candidate",
+)
 
 EVIDENCE_TYPES = [
     "Technical",
@@ -177,6 +183,8 @@ def dependency_rows(root=ROOT):
 def resources_for_stage(rows, stage):
     matched = []
     for row in rows:
+        if (row.get("status") or "").strip() not in LISTED_STATUSES:
+            continue
         stages = split_semi(row["workflow_stages"])
         if stage in stages:
             matched.append(row["resource_name"])
@@ -213,82 +221,110 @@ def _names_for_ids(rows, id_list):
     return [by_id.get(resource_id, resource_id) for resource_id in id_list]
 
 
+def _rationale_block(row, rows, heading="##"):
+    complements = _names_for_ids(rows, split_semi(row["complementary_resources"]))
+    complement_text = "; ".join(complements) if complements else "None listed in the catalog."
+    parts = [
+        f"{heading} {row['resource_name']}",
+        "",
+        f"- **Identifier:** {row['resource_id']}",
+        f"- **Class:** {row['resource_class']}",
+        f"- **Analytical function:** {row['analytical_function']}",
+        f"- **Workflow position:** {row['workflow_stages']}",
+        f"- **Evidence type:** {row['evidence_type']}",
+        f"- **Genome-build and transcript compatibility:** {row['genome_build_compatibility']}",
+        f"- **Maintenance:** {row['maintenance_status']}",
+        f"- **Official resource:** {row['official_url']}",
+        "",
+        "### Analytical purpose",
+        "",
+        row["primary_purpose"],
+        "",
+        "### Selection rationale",
+        "",
+        row["selection_rationale"],
+        "",
+        "### Appropriate use",
+        "",
+        row["appropriate_use"],
+        "",
+        "### Interpretation boundary",
+        "",
+        row["interpretation_boundary"],
+        "",
+        "### Inputs and outputs",
+        "",
+        f"Input: {row['input']}",
+        "",
+        f"Output: {row['output']}",
+        "",
+        "### Key limitations",
+        "",
+        row["key_limitations"],
+        "",
+        "### Complementary resources",
+        "",
+        complement_text,
+        "",
+    ]
+    if row["complementary_context"].strip():
+        parts.extend(
+            [
+                "### Complementary context",
+                "",
+                row["complementary_context"],
+                "",
+            ]
+        )
+    parts.extend(
+        [
+            "### Supporting citation",
+            "",
+            row["supporting_citation"],
+            "",
+        ]
+    )
+    if row["version_or_release"] == "not recorded":
+        version_note = f"No release identifier was captured when this entry was reviewed on {row['access_date']}."
+    else:
+        version_note = f"Release reviewed on {row['access_date']}: {row['version_or_release']}."
+    if row["reverify_at_use"] == "yes":
+        recheck_note = "Check the current release again when the resource is used."
+    else:
+        recheck_note = "The release cited here is fixed."
+    parts.extend(
+        [
+            "### Traceability",
+            "",
+            f"{version_note} {recheck_note}",
+            "",
+        ]
+    )
+    return parts
+
+
 def render_rationales(rows):
+    listed = [row for row in rows if (row.get("status") or "").strip() in LISTED_STATUSES]
+    retained = [row for row in rows if (row.get("status") or "").strip() not in LISTED_STATUSES]
     parts = [
         "# Resource selection rationales",
         "",
-        "These notes record why a resource is in the catalog, the situation in which it can be useful, and the limit of what its output can support. Presence in the catalog does not mean the resource should be used in every case.",
+        "These notes record the analytical purpose of each representative resource, the context in which it may be used, and the key limitations of its output. Resources are representative as opposed to mandatory.",
         "",
     ]
-    for row in rows:
-        complements = _names_for_ids(rows, split_semi(row["complementary_resources"]))
-        complement_text = "; ".join(complements) if complements else "None listed in the catalog."
+    for row in listed:
+        parts.extend(_rationale_block(row, rows))
+    if retained:
         parts.extend(
             [
-                f"## {row['resource_name']}",
+                "## Retired entries",
                 "",
-                f"- **Identifier:** {row['resource_id']}",
-                f"- **Class:** {row['resource_class']}",
-                f"- **Analytical function:** {row['analytical_function']}",
-                f"- **Workflow stage(s):** {row['workflow_stages']}",
-                f"- **Evidence type:** {row['evidence_type']}",
-                f"- **Genome build:** {row['genome_build_compatibility']}",
-                f"- **Maintenance:** {row['maintenance_status']}",
-                f"- **Official resource:** {row['official_url']}",
-                "",
-                "### Selection rationale",
-                "",
-                row["selection_rationale"],
-                "",
-                "### Appropriate use",
-                "",
-                row["appropriate_use"],
-                "",
-                "### Interpretation boundary",
-                "",
-                row["interpretation_boundary"],
-                "",
-                "### Inputs and outputs",
-                "",
-                f"Input: {row['input']}",
-                "",
-                f"Output: {row['output']}",
-                "",
-                "### Key limitations",
-                "",
-                row["key_limitations"],
-                "",
-                "### Complementary resources",
-                "",
-                complement_text,
+                "These entries are retained for traceability. They are not representative resources in the current workflow mapping.",
                 "",
             ]
         )
-        if row["complementary_context"].strip():
-            parts.extend(
-                [
-                    "### Complementary context",
-                    "",
-                    row["complementary_context"],
-                    "",
-                ]
-            )
-        if row["version_or_release"] == "not recorded":
-            version_note = f"No release identifier was captured when this entry was reviewed on {row['access_date']}."
-        else:
-            version_note = f"Release reviewed on {row['access_date']}: {row['version_or_release']}."
-        if row["reverify_at_use"] == "yes":
-            recheck_note = "Check the current release again when the resource is used."
-        else:
-            recheck_note = "The release cited here is fixed."
-        parts.extend(
-            [
-                "### Traceability",
-                "",
-                f"{version_note} {recheck_note}",
-                "",
-            ]
-        )
+        for row in retained:
+            parts.extend(_rationale_block(row, rows, heading="###"))
     return "\n".join(parts).rstrip() + "\n"
 
 
@@ -311,11 +347,11 @@ def render_workflow_md(rows, workflow, dependencies):
     parts = [
         "# Post-analytical workflow",
         "",
-        "Once a germline single-nucleotide variant or small indel has been called from a clinical exome or genome, the catalog follows the work in 11 stages. For each stage we give the question, the limit of what that result can decide, and the resources that address the question.",
+        "The framework organizes post-analytical interpretation and prioritization of germline single-nucleotide variants and small insertions/deletions identified through clinical WES/WGS. The 11 stages are the operational structure for the 13 analytical functions. For each stage, the analytical question, the key limitations, and the representative resources are recorded.",
         "",
-        "Listing a resource under a stage means it is a reasonable option for that question. It does not mean every laboratory must run it. Evidence type is shown so that a quality metric, an allele count, a prediction score, and a curated assertion stay distinct.",
+        "Resources are representative as opposed to mandatory. A resource may be selected, revisited, omitted, or replaced according to the variant, the disease mechanism, the phenotype, the inheritance model, and the evidence already available. Evidence type is shown so that a technical metric, a population frequency, a computational score, and a curated assertion stay distinct.",
         "",
-        "If two resources in the same stage can share assays, training data, annotations, or papers, that overlap is noted there. Concordant results from those resources are not independent evidence.",
+        "Where resources may share datasets, annotations, publications, training data, or modelling assumptions, that dependence is noted. Agreement among those resources is not independent evidence.",
         "",
     ]
     for stage_row in workflow:
@@ -325,9 +361,9 @@ def render_workflow_md(rows, workflow, dependencies):
             [
                 f"## {stage}. {stage_row['stage_name']}",
                 "",
-                f"**Question.** {stage_row['scientific_question']}",
+                f"**Analytical question.** {stage_row['scientific_question']}",
                 "",
-                f"**Limit.** {stage_row['interpretive_boundary']}",
+                f"**Key limitations.** {stage_row['interpretive_boundary']}",
                 "",
                 "### Resources",
                 "",

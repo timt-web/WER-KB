@@ -1,17 +1,20 @@
 cff-version: 1.2.0
-title: "An evidence-based knowledge base for clinical WES/WGS variant interpretation and prioritization"
+title: "Clinical WES/WGS Variant Interpretation and Prioritization: An Evidence-Based Framework for Resource Selection and Integration"
 message: "If you use this knowledge base, please cite the associated manuscript and this repository."
 type: dataset
 authors:
   - name: "WER-KB contributors"
-version: "0.2.0"
-date-released: "2026-10-10"
+version: "0.3.0"
+date-released: "2026-10-14"
 license: MIT
 repository-code: "https://github.com/timt-web/WER-KB"
 url: "https://github.com/timt-web/WER-KB"
 keywords:
-  - clinical genomics
-  - variant interpretation
   - whole-exome sequencing
   - whole-genome sequencing
+  - variant interpretation
+  - variant prioritization
+  - clinical genomics
+  - genomic resources
+  - evidence integration
   - knowledge base
